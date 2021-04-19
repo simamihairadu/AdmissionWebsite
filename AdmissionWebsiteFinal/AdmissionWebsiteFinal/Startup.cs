@@ -1,4 +1,5 @@
 using AdmissionWebsiteFinal.Data;
+using AdmissionWebsiteFinal.Persistence;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -30,6 +31,9 @@ namespace AdmissionWebsiteFinal
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
+            services.AddScoped<IAdmissionEntryRepository, AdmissionEntryRepository>();
+            services.AddScoped<IContestantRepository, ContestantRepository>();
+            services.AddScoped<IDepartmentRepository, DepartmentRepository>();
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();

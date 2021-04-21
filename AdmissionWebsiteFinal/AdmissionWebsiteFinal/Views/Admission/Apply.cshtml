@@ -1,0 +1,59 @@
+﻿@model AdmissionWebsiteFinal.Models.AdmissionEntryViewModel
+
+@{
+    ViewData["Title"] = "Apply";
+}
+
+<h1>Apply</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Apply">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Contestant.FirstName" class="control-label"></label>
+                <input asp-for="Contestant.FirstName" class="form-control" />
+                <span asp-validation-for="Contestant.FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Contestant.LastName" class="control-label"></label>
+                <input asp-for="Contestant.LastName" class="form-control" />
+                <span asp-validation-for="Contestant.LastName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Contestant.Email" class="control-label"></label>
+                <input asp-for="Contestant.Email" class="form-control" />
+                <span asp-validation-for="Contestant.Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Contestant.PhoneNumber" class="control-label"></label>
+                <input asp-for="Contestant.PhoneNumber" class="form-control" />
+                <span asp-validation-for="Contestant.PhoneNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Contestant.DateOfBirth" class="control-label"></label>
+                <input asp-for="Contestant.DateOfBirth" class="form-control" />
+                <span asp-validation-for="Contestant.DateOfBirth" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EntryScore" class="control-label"></label>
+                <input asp-for="EntryScore" class="form-control" />
+                <span asp-validation-for="EntryScore" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DepartmentId" class="control-label"></label>
+                @Html.DropDownListFor(m => m.DepartmentId, new SelectList(Model.Departments, "Id", "Name"), "Select Department", new { @class = "form-control" })
+                <span asp-validation-for="DepartmentId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Apply" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

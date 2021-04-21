@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AdmissionWebsiteFinal.Persistence
 {
-    public class UnitOfWork : IDisposable
+    public class UnitOfWork : IUnitOfWork
     {
         private readonly ApplicationDbContext context;
         public IAdmissionEntryRepository AdmissionEntries { get; private set; }

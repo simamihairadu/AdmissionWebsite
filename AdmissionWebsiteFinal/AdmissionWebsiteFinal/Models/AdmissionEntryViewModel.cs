@@ -11,11 +11,13 @@ namespace AdmissionWebsiteFinal.Models
     {
         public int Id { get; set; }
         public ContestantViewModel Contestant { get; set; }
+        [Required]
+        [Display(Name = "Score")]
         public float EntryScore { get; set; }
         public string ContestantId { get; set; }
+        public IEnumerable<DepartmentViewModel> Departments { get; set; }
         [Required]
         [Display(Name = "Departments")]
-        public IEnumerable<DepartmentViewModel> Departments { get; set; }
         public int DepartmentId { get; set; }
         public DateTime DateCreated { get; set; }
     }

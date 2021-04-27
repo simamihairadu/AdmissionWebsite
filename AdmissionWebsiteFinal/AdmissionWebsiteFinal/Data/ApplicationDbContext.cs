@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using AdmissionWebsiteFinal.Models;
 
 namespace AdmissionWebsiteFinal.Data
 {
@@ -15,5 +16,7 @@ namespace AdmissionWebsiteFinal.Data
         public DbSet<Contestant> Contestants { get; set; }
         public DbSet<AdmissionEntry> AdmissionEntries { get; set; }
         public DbSet<Department> Departments { get; set; }
+        public DbSet<Session> Sessions { get; set; }
+        public DbSet<AdmissionWebsiteFinal.Models.SessionViewModel> SessionViewModel { get; set; }
     }
 }

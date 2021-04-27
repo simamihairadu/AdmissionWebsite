@@ -22,7 +22,7 @@ namespace AdmissionWebsiteFinal.Controllers
         public ActionResult Index()
         {
             var departments = unitOfWork.Departments.GetAll();
-            var model = mapper.Map<List<Department>, List<DepartmentViewModel>>(departments.ToList());
+            var model = mapper.Map<List<DepartmentViewModel>>(departments);
 
             return View(model);
         }

@@ -1330,3 +1330,5 @@ C:\Dev\AdmissionWebsite\AdmissionWebsiteFinal\AdmissionWebsiteFinal\obj\Debug\ne
 C:\Dev\AdmissionWebsite\AdmissionWebsiteFinal\AdmissionWebsiteFinal\obj\Debug\netcoreapp3.1\AdmissionWebsiteFinal.dll
 C:\Dev\AdmissionWebsite\AdmissionWebsiteFinal\AdmissionWebsiteFinal\obj\Debug\netcoreapp3.1\AdmissionWebsiteFinal.pdb
 C:\Dev\AdmissionWebsite\AdmissionWebsiteFinal\AdmissionWebsiteFinal\obj\Debug\netcoreapp3.1\AdmissionWebsiteFinal.genruntimeconfig.cache
+E:\work\GitHub\AdmissionWebsite\AdmissionWebsiteFinal\AdmissionWebsiteFinal\obj\Debug\netcoreapp3.1\Razor\Views\Session\Index.cshtml.g.cs
+E:\work\GitHub\AdmissionWebsite\AdmissionWebsiteFinal\AdmissionWebsiteFinal\obj\Debug\netcoreapp3.1\Razor\Views\Session\Create.cshtml.g.cs

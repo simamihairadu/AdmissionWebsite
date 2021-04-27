@@ -36,6 +36,7 @@ namespace AdmissionWebsiteFinal
             services.AddScoped<IAdmissionEntryRepository, AdmissionEntryRepository>();
             services.AddScoped<IContestantRepository, ContestantRepository>();
             services.AddScoped<IDepartmentRepository, DepartmentRepository>();
+            services.AddScoped<ISessionRepository, SessionRepository>();
 
             services.AddTransient<IUnitOfWork, UnitOfWork>();
 

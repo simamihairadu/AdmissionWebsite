@@ -8,5 +8,6 @@ namespace AdmissionWebsiteFinal.Persistence
 {
     public interface ISessionRepository : IRepository<Session>
     {
+        bool IsAnyActive();
     }
 }

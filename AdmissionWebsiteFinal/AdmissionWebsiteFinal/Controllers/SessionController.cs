@@ -27,6 +27,12 @@ namespace AdmissionWebsiteFinal.Controllers
 
         public ActionResult Create()
         {
+            if (unitOfWork.Sessions.IsAnyActive())
+            {
+                ModelState.AddModelError("Active", "Can't have more than one active session.");
+                var sessionList = mapper.Map<List<SessionViewModel>>(unitOfWork.Sessions.GetAll());
+                return View("Index", sessionList);
+            }
             return View();
         }
 

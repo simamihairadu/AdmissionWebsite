@@ -10,5 +10,10 @@ namespace AdmissionWebsiteFinal.Persistence
     {
         public SessionRepository(ApplicationDbContext context) : base(context) { }
         public ApplicationDbContext ApplicationDbContext { get { return context as ApplicationDbContext; } }
+
+        public bool IsAnyActive()
+        {
+            return ApplicationDbContext.Sessions.Any(s => s.Active == true);
+        }
     }
 }

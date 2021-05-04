@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace AdmissionWebsiteFinal.Persistence
 {
-    public interface ISessionRepository : IRepository<Session>
+    public interface IEmployeeRepository : IRepository<Employee>
     {
-        bool IsAnyActive();
-        Session GetActiveSession();
+
     }
 }

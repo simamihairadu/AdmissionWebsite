@@ -4,14 +4,16 @@ using AdmissionWebsiteFinal.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AdmissionWebsiteFinal.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210502233311_addedFKBack")]
+    partial class addedFKBack
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -41,9 +43,6 @@ namespace AdmissionWebsiteFinal.Data.Migrations
                     b.Property<float>("EntryScore")
                         .HasColumnType("real");
 
-                    b.Property<int>("SessionId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.HasIndex("ContestantId");
@@ -51,8 +50,6 @@ namespace AdmissionWebsiteFinal.Data.Migrations
                     b.HasIndex("DepartmentId");
 
                     b.HasIndex("EmployeeId");
-
-                    b.HasIndex("SessionId");
 
                     b.ToTable("AdmissionEntries");
                 });
@@ -356,12 +353,6 @@ namespace AdmissionWebsiteFinal.Data.Migrations
                     b.HasOne("AdmissionWebsiteFinal.Data.Employee", "Employee")
                         .WithMany()
                         .HasForeignKey("EmployeeId");
-
-                    b.HasOne("AdmissionWebsiteFinal.Data.Session", "Session")
-                        .WithMany()
-                        .HasForeignKey("SessionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

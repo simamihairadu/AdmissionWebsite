@@ -9,6 +9,28 @@
   <ItemGroup>
     <Compile Remove="Data\Migrations\20210427183655_AddedSession.cs" />
     <Compile Remove="Data\Migrations\20210427183655_AddedSession.Designer.cs" />
+    <Compile Remove="Data\Migrations\20210502221906_updatedContestantIdtoString.cs" />
+    <Compile Remove="Data\Migrations\20210502221906_updatedContestantIdtoString.Designer.cs" />
+    <Compile Remove="Data\Migrations\20210502223139_updatedContestantIdtoString2.cs" />
+    <Compile Remove="Data\Migrations\20210502223139_updatedContestantIdtoString2.Designer.cs" />
+    <Compile Remove="Data\Migrations\20210502223246_updatedContestantIdtoString2.cs" />
+    <Compile Remove="Data\Migrations\20210502223246_updatedContestantIdtoString2.Designer.cs" />
+    <Compile Remove="Data\Migrations\20210502223355_updatedContestantIdtoString2.cs" />
+    <Compile Remove="Data\Migrations\20210502223355_updatedContestantIdtoString2.Designer.cs" />
+    <Compile Remove="Data\Migrations\20210502223948_removedAE_Contestant_FK.cs" />
+    <Compile Remove="Data\Migrations\20210502223948_removedAE_Contestant_FK.Designer.cs" />
+    <Compile Remove="Data\Migrations\20210502224112_changedbacktoint.cs" />
+    <Compile Remove="Data\Migrations\20210502224112_changedbacktoint.Designer.cs" />
+    <Compile Remove="Data\Migrations\20210502225245_removedCustomersTemp.cs" />
+    <Compile Remove="Data\Migrations\20210502225245_removedCustomersTemp.Designer.cs" />
+    <Compile Remove="Data\Migrations\20210502230408_ChangedContestantIdToString.cs" />
+    <Compile Remove="Data\Migrations\20210502230408_ChangedContestantIdToString.Designer.cs" />
+    <Compile Remove="Data\Migrations\20210502231014_removedContestantsTemp.cs" />
+    <Compile Remove="Data\Migrations\20210502231014_removedContestantsTemp.Designer.cs" />
+    <Compile Remove="Data\Migrations\20210502231235_removedContestantsTemp.cs" />
+    <Compile Remove="Data\Migrations\20210502231235_removedContestantsTemp.Designer.cs" />
+    <Compile Remove="Data\Migrations\20210502232852_updatedContestantId.cs" />
+    <Compile Remove="Data\Migrations\20210502232852_updatedContestantId.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

@@ -2,6 +2,7 @@
 using AdmissionWebsiteFinal.Models;
 using AdmissionWebsiteFinal.Persistence;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace AdmissionWebsiteFinal.Controllers
 {
+    [Authorize]
     public class SessionController : Controller
     {
         private readonly IMapper mapper;

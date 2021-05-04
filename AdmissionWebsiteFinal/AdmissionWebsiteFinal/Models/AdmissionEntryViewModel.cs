@@ -19,6 +19,8 @@ namespace AdmissionWebsiteFinal.Models
         [Required]
         [Display(Name = "Departments")]
         public int DepartmentId { get; set; }
+        public EmployeeViewModel Employee { get; set; }
+        public string EmployeeId { get; set; }
         public DateTime DateCreated { get; set; }
     }
 }

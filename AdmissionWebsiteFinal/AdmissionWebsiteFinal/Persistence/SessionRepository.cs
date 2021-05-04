@@ -15,5 +15,9 @@ namespace AdmissionWebsiteFinal.Persistence
         {
             return ApplicationDbContext.Sessions.Any(s => s.Active == true);
         }
+        public Session GetActiveSession()
+        {
+            return ApplicationDbContext.Sessions.Where(s => s.Active == true).FirstOrDefault();
+        }
     }
 }

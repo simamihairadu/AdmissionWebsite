@@ -13,6 +13,7 @@ namespace AdmissionWebsiteFinal.Persistence
         public IContestantRepository Contestants { get; private set; }
         public IDepartmentRepository Departments { get; private set; }
         public ISessionRepository Sessions { get; private set; }
+        public IEmployeeRepository Employees { get; set; }
         public UnitOfWork(ApplicationDbContext context)
         {
             this.context = context;
@@ -20,6 +21,7 @@ namespace AdmissionWebsiteFinal.Persistence
             Contestants = new ContestantRepository(this.context);
             Departments = new DepartmentRepository(this.context);
             Sessions = new SessionRepository(this.context);
+            Employees = new EmployeeRepository(this.context);
         }
         public int Complete()
         {

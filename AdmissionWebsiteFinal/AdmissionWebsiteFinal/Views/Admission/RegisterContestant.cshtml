@@ -1,15 +1,15 @@
 ﻿@model AdmissionWebsiteFinal.Models.AdmissionEntryViewModel
 
 @{
-    ViewData["Title"] = "Apply";
+    ViewData["Title"] = "RegisterContestant";
 }
 
-<h1>Apply</h1>
+<h1>Register</h1>
 
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Apply">
+        <form asp-action="RegisterContestant">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Contestant.FirstName" class="control-label"></label>
@@ -22,6 +22,11 @@
                 <span asp-validation-for="Contestant.LastName" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="Contestant.ContestantId" class="control-label"></label>
+                <input asp-for="Contestant.ContestantId" class="form-control" />
+                <span asp-validation-for="Contestant.ContestantId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="Contestant.Email" class="control-label"></label>
                 <input asp-for="Contestant.Email" class="form-control" />
                 <span asp-validation-for="Contestant.Email" class="text-danger"></span>
@@ -30,6 +35,11 @@
                 <label asp-for="Contestant.PhoneNumber" class="control-label"></label>
                 <input asp-for="Contestant.PhoneNumber" class="form-control" />
                 <span asp-validation-for="Contestant.PhoneNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Contestant.Adress" class="control-label"></label>
+                <input asp-for="Contestant.Adress" class="form-control" />
+                <span asp-validation-for="Contestant.Adress" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Contestant.DateOfBirth" class="control-label"></label>
@@ -47,7 +57,7 @@
                 <span asp-validation-for="DepartmentId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Apply" class="btn btn-primary" />
+                <input type="submit" value="Register Contestant" class="btn btn-primary" />
             </div>
         </form>
     </div>

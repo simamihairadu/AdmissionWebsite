@@ -11,6 +11,7 @@ namespace AdmissionWebsiteFinal.Persistence
         IContestantRepository Contestants { get; }
         IDepartmentRepository Departments { get; }
         ISessionRepository Sessions { get; }
+        IEmployeeRepository Employees { get; }
         int Complete();
     }
 }

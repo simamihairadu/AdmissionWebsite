@@ -4,14 +4,16 @@ using AdmissionWebsiteFinal.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AdmissionWebsiteFinal.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210502232530_removedContestantFKTemp")]
+    partial class removedContestantFKTemp
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -26,9 +28,6 @@ namespace AdmissionWebsiteFinal.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("ContestantId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<DateTime>("DateCreated")
                         .HasColumnType("datetime2");
 
@@ -41,26 +40,21 @@ namespace AdmissionWebsiteFinal.Data.Migrations
                     b.Property<float>("EntryScore")
                         .HasColumnType("real");
 
-                    b.Property<int>("SessionId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("ContestantId");
 
                     b.HasIndex("DepartmentId");
 
                     b.HasIndex("EmployeeId");
-
-                    b.HasIndex("SessionId");
 
                     b.ToTable("AdmissionEntries");
                 });
 
             modelBuilder.Entity("AdmissionWebsiteFinal.Data.Contestant", b =>
                 {
-                    b.Property<string>("ContestantId")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Adress")
                         .HasColumnType("nvarchar(max)");
@@ -80,7 +74,7 @@ namespace AdmissionWebsiteFinal.Data.Migrations
                     b.Property<string>("PhoneNumber")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("ContestantId");
+                    b.HasKey("Id");
 
                     b.ToTable("Contestants");
                 });
@@ -343,10 +337,6 @@ namespace AdmissionWebsiteFinal.Data.Migrations
 
             modelBuilder.Entity("AdmissionWebsiteFinal.Data.AdmissionEntry", b =>
                 {
-                    b.HasOne("AdmissionWebsiteFinal.Data.Contestant", "Contestant")
-                        .WithMany()
-                        .HasForeignKey("ContestantId");
-
                     b.HasOne("AdmissionWebsiteFinal.Data.Department", "Department")
                         .WithMany()
                         .HasForeignKey("DepartmentId")
@@ -356,12 +346,6 @@ namespace AdmissionWebsiteFinal.Data.Migrations
                     b.HasOne("AdmissionWebsiteFinal.Data.Employee", "Employee")
                         .WithMany()
                         .HasForeignKey("EmployeeId");
-
-                    b.HasOne("AdmissionWebsiteFinal.Data.Session", "Session")
-                        .WithMany()
-                        .HasForeignKey("SessionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

@@ -6,13 +6,9 @@ using System.Threading.Tasks;
 
 namespace AdmissionWebsiteFinal.Persistence
 {
-    public class ContestantRepository: Repository<Contestant>,IContestantRepository
+    public class EmployeeRepository : Repository<Employee>, IEmployeeRepository
     {
-        public ContestantRepository(ApplicationDbContext context) : base(context) { }
+        public EmployeeRepository(ApplicationDbContext context) : base(context) { }
         public ApplicationDbContext ApplicationDbContext { get { return context as ApplicationDbContext; } }
-        public Contestant Get(string id)
-        {
-            return ApplicationDbContext.Contestants.Find(id);
-        }
     }
 }

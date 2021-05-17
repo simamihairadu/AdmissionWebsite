@@ -36,11 +36,15 @@ namespace AdmissionWebsiteFinal.Controllers
         {
             if (unitOfWork.Sessions.IsAnyActive())
             {
-                var departments = unitOfWork.Departments.GetAll();
-                var mappedDepartments = mapper.Map<IEnumerable<DepartmentViewModel>>(departments);
+                var session = unitOfWork.Sessions.GetActiveSession();
+                var entryOptions = mapper.Map<IEnumerable<EntryOptionViewModel>>(unitOfWork.Options.GetOptionsBySessionId(session.Id));
+                foreach (var option in entryOptions)
+                {
+                    option.Name = unitOfWork.Specializations.GetNameById(option.SpecializationId);
+                }
                 var admissionEntryViewModel = new AdmissionEntryViewModel
                 {
-                    Departments = mappedDepartments
+                    EntryOptions = entryOptions
                 };
                 return View(admissionEntryViewModel);
             }
@@ -54,27 +58,24 @@ namespace AdmissionWebsiteFinal.Controllers
             {
                 if (!ModelState.IsValid)
                 {
-                    var departments = unitOfWork.Departments.GetAll();
-                    var mappedDepartments = mapper.Map<IEnumerable<DepartmentViewModel>>(departments);
+                    var session = unitOfWork.Sessions.GetActiveSession();
+                    var entryOptions = mapper.Map<IEnumerable<EntryOptionViewModel>>(unitOfWork.Options.GetOptionsBySessionId(session.Id));
                     var admissionEntryViewModel = new AdmissionEntryViewModel
                     {
-                        Departments = mappedDepartments
+                        EntryOptions = entryOptions
                     };
-                    return View("RegisterContestant", admissionEntryViewModel);
+                    return View(admissionEntryViewModel);
                 }
 
                 var employee = userManager.GetUserAsync(User).Result;
                 var contestant = mapper.Map<Contestant>(model.Contestant);
-                var session = unitOfWork.Sessions.GetActiveSession();
                 unitOfWork.Contestants.Add(contestant);
 
                 var admissionEntry = new AdmissionEntry
                 {
                     ContestantId = contestant.ContestantId,
                     EntryScore = model.EntryScore,
-                    DepartmentId = model.DepartmentId,
                     EmployeeId = employee.Id,
-                    SessionId = session.Id,
                     DateCreated = DateTime.Now
                 };
                 unitOfWork.AdmissionEntries.Add(admissionEntry);

@@ -32,27 +32,17 @@ namespace AdmissionWebsiteFinal.Data.Migrations
                     b.Property<DateTime>("DateCreated")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("DepartmentId")
-                        .HasColumnType("int");
-
                     b.Property<string>("EmployeeId")
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<float>("EntryScore")
                         .HasColumnType("real");
 
-                    b.Property<int>("SessionId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.HasIndex("ContestantId");
 
-                    b.HasIndex("DepartmentId");
-
                     b.HasIndex("EmployeeId");
-
-                    b.HasIndex("SessionId");
 
                     b.ToTable("AdmissionEntries");
                 });
@@ -101,6 +91,62 @@ namespace AdmissionWebsiteFinal.Data.Migrations
                     b.ToTable("Departments");
                 });
 
+            modelBuilder.Entity("AdmissionWebsiteFinal.Data.EntryOption", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("AdmissionEntryId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("OptionId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AdmissionEntryId");
+
+                    b.HasIndex("OptionId");
+
+                    b.ToTable("EntryOptions");
+                });
+
+            modelBuilder.Entity("AdmissionWebsiteFinal.Data.Option", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("LocuriBuget")
+                        .HasColumnType("int");
+
+                    b.Property<int>("LocuriRomanDePretutindeni")
+                        .HasColumnType("int");
+
+                    b.Property<int>("LocuriRrom")
+                        .HasColumnType("int");
+
+                    b.Property<int>("LocuriTaxa")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SessionId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SpecializationId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SessionId");
+
+                    b.HasIndex("SpecializationId");
+
+                    b.ToTable("Options");
+                });
+
             modelBuilder.Entity("AdmissionWebsiteFinal.Data.Session", b =>
                 {
                     b.Property<int>("Id")
@@ -120,6 +166,22 @@ namespace AdmissionWebsiteFinal.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Sessions");
+                });
+
+            modelBuilder.Entity("AdmissionWebsiteFinal.Data.Specialization", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Specializations");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -347,19 +409,37 @@ namespace AdmissionWebsiteFinal.Data.Migrations
                         .WithMany()
                         .HasForeignKey("ContestantId");
 
-                    b.HasOne("AdmissionWebsiteFinal.Data.Department", "Department")
-                        .WithMany()
-                        .HasForeignKey("DepartmentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("AdmissionWebsiteFinal.Data.Employee", "Employee")
                         .WithMany()
                         .HasForeignKey("EmployeeId");
+                });
 
+            modelBuilder.Entity("AdmissionWebsiteFinal.Data.EntryOption", b =>
+                {
+                    b.HasOne("AdmissionWebsiteFinal.Data.AdmissionEntry", "AdmissionEntry")
+                        .WithMany()
+                        .HasForeignKey("AdmissionEntryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("AdmissionWebsiteFinal.Data.Option", "Option")
+                        .WithMany()
+                        .HasForeignKey("OptionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("AdmissionWebsiteFinal.Data.Option", b =>
+                {
                     b.HasOne("AdmissionWebsiteFinal.Data.Session", "Session")
                         .WithMany()
                         .HasForeignKey("SessionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("AdmissionWebsiteFinal.Data.Specialization", "Specialization")
+                        .WithMany()
+                        .HasForeignKey("SpecializationId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

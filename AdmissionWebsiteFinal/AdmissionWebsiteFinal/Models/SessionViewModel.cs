@@ -19,5 +19,6 @@ namespace AdmissionWebsiteFinal.Models
         public DateTime EndDate { get; set; }
         [Required]
         public bool Active { get; set; }
+        public IEnumerable<OptionViewModel> Options { get; set; }
     }
 }

@@ -13,6 +13,10 @@ namespace AdmissionWebsiteFinal.Data
             : base(options)
         {
         }
+
+        public DbSet<EntryOption> EntryOptions { get; set; }
+        public DbSet<Specialization> Specializations { get; set; }
+        public DbSet<Option> Options { get; set; }
         public DbSet<Contestant> Contestants { get; set; }
         public DbSet<AdmissionEntry> AdmissionEntries { get; set; }
         public DbSet<Department> Departments { get; set; }

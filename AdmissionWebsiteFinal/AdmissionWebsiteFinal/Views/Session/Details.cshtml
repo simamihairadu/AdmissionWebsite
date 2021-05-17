@@ -1,0 +1,92 @@
+﻿@model AdmissionWebsiteFinal.Models.SessionViewModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Session</h4>
+    <a asp-action="Index">Back to List</a>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.StartDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.StartDate)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.EndDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.EndDate)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Active)
+        </dt>
+        <dd class="col-sm-10">
+            @(Model.Active?"Yes":"No")
+        </dd>
+    </dl>
+</div>
+<div>
+    <h4>Specializations</h4>
+    @if (Model.Active)
+    {
+        <a asp-action="AddOption" class="btn btn-success">Add</a>
+    }
+    @if (Model.Options != null)
+    {
+
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        Nume
+                    </th>
+                    <th>
+                        Locuri Buget
+                    </th>
+                    <th>
+                        Locuri Taxa
+                    </th>
+                    <th>
+                        Locuri Rromi
+                    </th>
+                    <th>
+                        Locuri Romani de pretutindeni
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Options)
+                {
+                    <tr>
+                        <td>
+                            @(item.Name)
+                        </td>
+                        <td>
+                            @(item.LocuriBuget)
+                        </td>
+                        <td>
+                            @(item.LocuriTaxa)
+                        </td>
+                        <td>
+                            @(item.LocuriRrom)
+                        </td>
+                        <td>
+                            @(item.LocuriRomanDePretutindeni)
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>
+
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
+</div>

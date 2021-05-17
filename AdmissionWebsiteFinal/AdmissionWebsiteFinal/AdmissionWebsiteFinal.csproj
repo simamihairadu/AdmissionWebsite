@@ -31,6 +31,10 @@
     <Compile Remove="Data\Migrations\20210502231235_removedContestantsTemp.Designer.cs" />
     <Compile Remove="Data\Migrations\20210502232852_updatedContestantId.cs" />
     <Compile Remove="Data\Migrations\20210502232852_updatedContestantId.Designer.cs" />
+    <Compile Remove="Data\Migrations\20210513164934_AddedOptionEntry.cs" />
+    <Compile Remove="Data\Migrations\20210513164934_AddedOptionEntry.Designer.cs" />
+    <Compile Remove="Data\Migrations\20210515201303_SeedSpecialization.cs" />
+    <Compile Remove="Data\Migrations\20210515201303_SeedSpecialization.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

@@ -73,5 +73,68 @@ namespace AdmissionWebsiteFinal.Controllers
                 return View();
             }
         }
+
+        public ActionResult Details(int id)
+        {
+            var session = mapper.Map<SessionViewModel>(unitOfWork.Sessions.Get(id));
+            var options = mapper.Map<IEnumerable<OptionViewModel>>(unitOfWork.Options.GetOptionsBySessionId(id));
+            foreach (var option in options)
+            {
+                option.Name = unitOfWork.Specializations.GetNameById(option.SpecializationId);
+            }
+            session.Options = options;
+            return View(session);
+        }
+
+        public ActionResult AddOption()
+        {
+            var specializations = mapper.Map<IEnumerable<SpecializationViewModel>>(unitOfWork.Specializations.GetAll());
+            var option = new OptionViewModel
+            {
+                Specializations = specializations
+            };
+            return View(option);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddOption(OptionViewModel optionViewModel)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+                    return View("AddOption");
+                }
+                var option = mapper.Map<Option>(optionViewModel);
+                var session = unitOfWork.Sessions.GetActiveSession();
+                option.SessionId = session.Id;
+                unitOfWork.Options.Add(option);
+                unitOfWork.Complete();
+                return RedirectToAction(nameof(Index));
+            }
+            catch (Exception)
+            {
+                var specializations = mapper.Map<IEnumerable<SpecializationViewModel>>(unitOfWork.Specializations.GetAll());
+                var option = new OptionViewModel
+                {
+                    Specializations = specializations
+                };
+                return View(option);
+            }
+        }
+
+        public ActionResult End(int id)
+        {
+            var session = unitOfWork.Sessions.Get(id);
+
+            session.Active = false;
+            unitOfWork.Sessions.Update(session);
+            unitOfWork.Complete();
+
+            var sessionList = mapper.Map<List<SessionViewModel>>(unitOfWork.Sessions.GetAll());
+
+            return View("Index", sessionList);
+        }
     }
 }

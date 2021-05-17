@@ -1333,3 +1333,5 @@ E:\work\GitHub\AdmissionWebsite\AdmissionWebsiteFinal\AdmissionWebsiteFinal\obj\
 E:\work\GitHub\AdmissionWebsite\AdmissionWebsiteFinal\AdmissionWebsiteFinal\obj\Debug\netcoreapp3.1\Razor\Views\Session\Create.cshtml.g.cs
 E:\work\GitHub\AdmissionWebsite\AdmissionWebsiteFinal\AdmissionWebsiteFinal\obj\Debug\netcoreapp3.1\Razor\Views\Admission\RegisterContestant.cshtml.g.cs
 E:\work\GitHub\AdmissionWebsite\AdmissionWebsiteFinal\AdmissionWebsiteFinal\obj\Debug\netcoreapp3.1\Razor\Views\Admission\RegisterError.cshtml.g.cs
+E:\work\GitHub\AdmissionWebsite\AdmissionWebsiteFinal\AdmissionWebsiteFinal\obj\Debug\netcoreapp3.1\Razor\Views\Session\Details.cshtml.g.cs
+E:\work\GitHub\AdmissionWebsite\AdmissionWebsiteFinal\AdmissionWebsiteFinal\obj\Debug\netcoreapp3.1\Razor\Views\Session\AddOption.cshtml.g.cs

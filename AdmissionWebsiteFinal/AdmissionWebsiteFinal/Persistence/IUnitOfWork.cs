@@ -12,6 +12,8 @@ namespace AdmissionWebsiteFinal.Persistence
         IDepartmentRepository Departments { get; }
         ISessionRepository Sessions { get; }
         IEmployeeRepository Employees { get; }
+        IOptionRepository Options { get; }
+        ISpecializationRepository Specializations { get; }
         int Complete();
     }
 }

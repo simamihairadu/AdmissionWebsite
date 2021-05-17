@@ -15,10 +15,10 @@ namespace AdmissionWebsiteFinal.Models
         [Display(Name = "Score")]
         public float EntryScore { get; set; }
         public string ContestantId { get; set; }
-        public IEnumerable<DepartmentViewModel> Departments { get; set; }
+        public IEnumerable<EntryOptionViewModel> EntryOptions { get; set; }
         [Required]
-        [Display(Name = "Departments")]
-        public int DepartmentId { get; set; }
+        [Display(Name = "Options")]
+        public int EntryOptionId { get; set; }
         public EmployeeViewModel Employee { get; set; }
         public string EmployeeId { get; set; }
         public DateTime DateCreated { get; set; }

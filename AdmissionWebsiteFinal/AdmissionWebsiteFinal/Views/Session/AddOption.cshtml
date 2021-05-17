@@ -1,0 +1,50 @@
+﻿@model AdmissionWebsiteFinal.Models.OptionViewModel
+
+@{
+    ViewData["Title"] = "AddOption";
+}
+
+<h1>AddOption</h1>
+
+<h4>OptionViewModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AddOption">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="SpecializationId" class="control-label"></label>
+                @Html.DropDownListFor(m => m.SpecializationId, new SelectList(Model.Specializations, "Id", "Name"), "Select Specialization", new { @class = "form-control" })
+                <span asp-validation-for="SpecializationId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LocuriBuget" class="control-label"></label>
+                <input asp-for="LocuriBuget" class="form-control" />
+                <span asp-validation-for="LocuriBuget" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LocuriTaxa" class="control-label"></label>
+                <input asp-for="LocuriTaxa" class="form-control" />
+                <span asp-validation-for="LocuriTaxa" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LocuriRrom" class="control-label"></label>
+                <input asp-for="LocuriRrom" class="form-control" />
+                <span asp-validation-for="LocuriRrom" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LocuriRomanDePretutindeni" class="control-label"></label>
+                <input asp-for="LocuriRomanDePretutindeni" class="form-control" />
+                <span asp-validation-for="LocuriRomanDePretutindeni" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

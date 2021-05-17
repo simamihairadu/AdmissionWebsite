@@ -14,6 +14,8 @@ namespace AdmissionWebsiteFinal.Persistence
         public IDepartmentRepository Departments { get; private set; }
         public ISessionRepository Sessions { get; private set; }
         public IEmployeeRepository Employees { get; set; }
+        public IOptionRepository Options { get; }
+        public ISpecializationRepository Specializations { get; }
         public UnitOfWork(ApplicationDbContext context)
         {
             this.context = context;
@@ -22,6 +24,8 @@ namespace AdmissionWebsiteFinal.Persistence
             Departments = new DepartmentRepository(this.context);
             Sessions = new SessionRepository(this.context);
             Employees = new EmployeeRepository(this.context);
+            Options = new OptionRepository(this.context);
+            Specializations = new SpecializationRepository(this.context);
         }
         public int Complete()
         {

@@ -16,6 +16,9 @@ namespace AdmissionWebsiteFinal.Mappings
             CreateMap<Contestant, ContestantViewModel>().ReverseMap();
             CreateMap<Department, DepartmentViewModel>().ReverseMap();
             CreateMap<Session, SessionViewModel>().ReverseMap();
+            CreateMap<Specialization, SpecializationViewModel>().ReverseMap();
+            CreateMap<Option, OptionViewModel>().ReverseMap();
+            CreateMap<Option, EntryOptionViewModel>().ReverseMap();
         }
     }
 }

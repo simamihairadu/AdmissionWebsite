@@ -15,15 +15,10 @@ namespace AdmissionWebsiteFinal.Data
         public Contestant Contestant { get; set; }
         public float EntryScore { get; set; }
         public string ContestantId { get; set; }
-        [ForeignKey("DepartmentId")]
-        public Department Department { get; set; }
-        public int DepartmentId { get; set; }
+
         [ForeignKey("EmployeeId")]
         public Employee Employee { get; set; }
         public string EmployeeId { get; set; }
-        [ForeignKey("SessionId")]
-        public Session Session { get; set; }
-        public int SessionId { get; set; }
         public DateTime DateCreated { get; set; }
     }
 }

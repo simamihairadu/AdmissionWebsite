@@ -10,5 +10,10 @@ namespace AdmissionWebsiteFinal.Persistence
     {
         public AdmissionEntryRepository(ApplicationDbContext context) : base(context) { }
         public ApplicationDbContext ApplicationDbContext { get { return context as ApplicationDbContext; } }
+
+        public AdmissionEntry GetAdmissionEntryByContestant(string id)
+        {
+            return ApplicationDbContext.AdmissionEntries.Where(a => a.ContestantId == id).FirstOrDefault();
+        }
     }
 }

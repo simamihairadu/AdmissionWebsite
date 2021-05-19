@@ -40,6 +40,7 @@ namespace AdmissionWebsiteFinal
             services.AddScoped<IEmployeeRepository, EmployeeRepository>();
             services.AddScoped<ISpecializationRepository, SpecializationRepository>();
             services.AddScoped<IOptionRepository, OptionRepository>();
+            services.AddScoped<IEntryOptionRepository, EntryOptionRepository>();
 
 
             services.AddTransient<IUnitOfWork, UnitOfWork>();

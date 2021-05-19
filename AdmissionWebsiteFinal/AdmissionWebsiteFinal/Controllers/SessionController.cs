@@ -88,12 +88,17 @@ namespace AdmissionWebsiteFinal.Controllers
 
         public ActionResult AddOption()
         {
+            return View(GetOptionViewModel());
+        }
+        
+        private OptionViewModel GetOptionViewModel()
+        {
             var specializations = mapper.Map<IEnumerable<SpecializationViewModel>>(unitOfWork.Specializations.GetAll());
-            var option = new OptionViewModel
+            var optionViewModel = new OptionViewModel
             {
                 Specializations = specializations
             };
-            return View(option);
+            return optionViewModel;
         }
 
         [HttpPost]
@@ -102,25 +107,25 @@ namespace AdmissionWebsiteFinal.Controllers
         {
             try
             {
-                if (!ModelState.IsValid)
-                {
-                    return View("AddOption");
-                }
                 var option = mapper.Map<Option>(optionViewModel);
                 var session = unitOfWork.Sessions.GetActiveSession();
+
+                if (!ModelState.IsValid || unitOfWork.Options.GetOptionsBySessionId(session.Id).Where(o => o.SpecializationId == option.SpecializationId).FirstOrDefault() != null)
+                {
+                    ModelState.AddModelError("SpecializationId", "Option already exists.");
+                    return View(GetOptionViewModel());
+                }
+
                 option.SessionId = session.Id;
+
                 unitOfWork.Options.Add(option);
                 unitOfWork.Complete();
+
                 return RedirectToAction(nameof(Index));
             }
             catch (Exception)
             {
-                var specializations = mapper.Map<IEnumerable<SpecializationViewModel>>(unitOfWork.Specializations.GetAll());
-                var option = new OptionViewModel
-                {
-                    Specializations = specializations
-                };
-                return View(option);
+                return View(GetOptionViewModel());
             }
         }
 

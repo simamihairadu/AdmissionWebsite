@@ -26,13 +26,23 @@ namespace AdmissionWebsiteFinal.Controllers
         }
         public ActionResult Index()
         {
-            var departments = unitOfWork.Departments.GetAll();
-            var model = mapper.Map<List<DepartmentViewModel>>(departments);
+            var departments = unitOfWork.Specializations.GetAll();
+            var model = mapper.Map<List<SpecializationViewModel>>(departments);
 
             return View(model);
         }
 
         public ActionResult RegisterContestant()
+        {
+            var admissionEntryViewModel = GetAdmissionEntryViewModel();
+            if (admissionEntryViewModel != null)
+            {
+                return View(admissionEntryViewModel);
+            }
+            return View("RegisterError");
+        }
+
+        private AdmissionEntryViewModel GetAdmissionEntryViewModel()
         {
             if (unitOfWork.Sessions.IsAnyActive())
             {
@@ -46,25 +56,19 @@ namespace AdmissionWebsiteFinal.Controllers
                 {
                     EntryOptions = entryOptions
                 };
-                return View(admissionEntryViewModel);
+                return admissionEntryViewModel;
             }
-            return View("RegisterError");
+            return null;
         }
 
         [HttpPost]
-        public ActionResult RegisterContestant(AdmissionEntryViewModel model)
+        public ActionResult RegisterContestant(AdmissionEntryViewModel model,int[] entryOptionId)
         {
             try
             {
                 if (!ModelState.IsValid)
                 {
-                    var session = unitOfWork.Sessions.GetActiveSession();
-                    var entryOptions = mapper.Map<IEnumerable<EntryOptionViewModel>>(unitOfWork.Options.GetOptionsBySessionId(session.Id));
-                    var admissionEntryViewModel = new AdmissionEntryViewModel
-                    {
-                        EntryOptions = entryOptions
-                    };
-                    return View(admissionEntryViewModel);
+                    return View(GetAdmissionEntryViewModel());
                 }
 
                 var employee = userManager.GetUserAsync(User).Result;
@@ -81,11 +85,23 @@ namespace AdmissionWebsiteFinal.Controllers
                 unitOfWork.AdmissionEntries.Add(admissionEntry);
                 unitOfWork.Complete();
 
+                admissionEntry = unitOfWork.AdmissionEntries.GetAdmissionEntryByContestant(contestant.ContestantId);
+
+                foreach(int id in entryOptionId)
+                {
+                    unitOfWork.EntryOptions.Add(new EntryOption
+                    {
+                        OptionId = id,
+                        AdmissionEntryId = admissionEntry.Id
+                    });
+                }
+                unitOfWork.Complete();
+
                 return RedirectToAction(nameof(Index));
             }
             catch (Exception e)
             {
-                return View();
+                return View(GetAdmissionEntryViewModel());
             }
         }
 

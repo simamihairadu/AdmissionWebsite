@@ -8,5 +8,6 @@ namespace AdmissionWebsiteFinal.Persistence
 {
     public interface IContestantRepository : IRepository<Contestant>
     {
+        Contestant Get(string id);
     }
 }

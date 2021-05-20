@@ -14,13 +14,16 @@ namespace AdmissionWebsiteFinal.Models
         [Required]
         [Display(Name = "Score")]
         public float EntryScore { get; set; }
+        [Display(Name = "CNP")]
         public string ContestantId { get; set; }
         public IEnumerable<EntryOptionViewModel> EntryOptions { get; set; }
+        public IEnumerable<OptionViewModel> Options { get; set; }
         [Required]
         [Display(Name = "Options")]
         public int EntryOptionId { get; set; }
         public EmployeeViewModel Employee { get; set; }
         public string EmployeeId { get; set; }
+        [Display(Name = "Date Created")]
         public DateTime DateCreated { get; set; }
     }
 }

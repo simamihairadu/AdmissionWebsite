@@ -13,7 +13,7 @@ namespace AdmissionWebsiteFinal.Validation
         {
             var contestant = (ContestantViewModel)validationContext.ObjectInstance;
 
-            if (contestant.ContestantId != null && contestant.ContestantId.Length == 13 & CheckIfAllDigits(contestant.ContestantId))
+            if (contestant.Id != null && contestant.Id.Length == 13 & CheckIfAllDigits(contestant.Id))
             {
                 return ValidationResult.Success;
             }

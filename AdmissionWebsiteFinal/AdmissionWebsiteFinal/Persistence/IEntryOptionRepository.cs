@@ -8,5 +8,6 @@ namespace AdmissionWebsiteFinal.Persistence
 {
     public interface IEntryOptionRepository : IRepository<EntryOption>
     {
+        List<EntryOption> GetEntryOptionsByEntryId(int entryId);
     }
 }

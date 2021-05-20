@@ -10,6 +10,10 @@ namespace AdmissionWebsiteFinal.Persistence
     {
         public EntryOptionRepository(ApplicationDbContext context) : base(context) { }
         public ApplicationDbContext ApplicationDbContext { get { return context as ApplicationDbContext; } }
-    
+
+        public List<EntryOption> GetEntryOptionsByEntryId(int entryId)
+        {
+            return ApplicationDbContext.EntryOptions.Where(o => o.AdmissionEntryId == entryId).ToList();
+        }
     }
 }

@@ -33,15 +33,18 @@
 </div>
 <div>
     <h4>Specializations</h4>
+    <br />
     @if (Model.Active)
     {
         <a asp-action="AddOption" class="btn btn-success">Add</a>
+        <br />
+        <br />
     }
     @if (Model.Options != null)
     {
 
 
-        <table class="table">
+        <table class="table text-nowrap table-bordered table-striped">
             <thead>
                 <tr>
                     <th>

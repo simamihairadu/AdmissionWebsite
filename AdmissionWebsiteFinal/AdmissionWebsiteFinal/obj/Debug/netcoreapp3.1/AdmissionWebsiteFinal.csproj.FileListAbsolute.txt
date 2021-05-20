@@ -776,7 +776,6 @@ E:\work\GitHub\AdmissionWebsite\AdmissionWebsiteFinal\AdmissionWebsiteFinal\obj\
 E:\work\GitHub\AdmissionWebsite\AdmissionWebsiteFinal\AdmissionWebsiteFinal\obj\Debug\netcoreapp3.1\AdmissionWebsiteFinal.genruntimeconfig.cache
 E:\work\GitHub\AdmissionWebsite\AdmissionWebsiteFinal\AdmissionWebsiteFinal\bin\Debug\netcoreapp3.1\AutoMapper.dll
 E:\work\GitHub\AdmissionWebsite\AdmissionWebsiteFinal\AdmissionWebsiteFinal\bin\Debug\netcoreapp3.1\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
-E:\work\GitHub\AdmissionWebsite\AdmissionWebsiteFinal\AdmissionWebsiteFinal\obj\Debug\netcoreapp3.1\Razor\Views\Admission\Index.cshtml.g.cs
 E:\work\GitHub\AdmissionWebsite\AdmissionWebsiteFinal\AdmissionWebsiteFinal\bin\Debug\netcoreapp3.1\Microsoft.CodeAnalysis.CSharp.Workspaces.dll
 E:\work\GitHub\AdmissionWebsite\AdmissionWebsiteFinal\AdmissionWebsiteFinal\bin\Debug\netcoreapp3.1\Microsoft.CodeAnalysis.Workspaces.dll
 E:\work\GitHub\AdmissionWebsite\AdmissionWebsiteFinal\AdmissionWebsiteFinal\bin\Debug\netcoreapp3.1\Microsoft.VisualStudio.Web.CodeGeneration.dll
@@ -1335,3 +1334,5 @@ E:\work\GitHub\AdmissionWebsite\AdmissionWebsiteFinal\AdmissionWebsiteFinal\obj\
 E:\work\GitHub\AdmissionWebsite\AdmissionWebsiteFinal\AdmissionWebsiteFinal\obj\Debug\netcoreapp3.1\Razor\Views\Admission\RegisterError.cshtml.g.cs
 E:\work\GitHub\AdmissionWebsite\AdmissionWebsiteFinal\AdmissionWebsiteFinal\obj\Debug\netcoreapp3.1\Razor\Views\Session\Details.cshtml.g.cs
 E:\work\GitHub\AdmissionWebsite\AdmissionWebsiteFinal\AdmissionWebsiteFinal\obj\Debug\netcoreapp3.1\Razor\Views\Session\AddOption.cshtml.g.cs
+E:\work\GitHub\AdmissionWebsite\AdmissionWebsiteFinal\AdmissionWebsiteFinal\obj\Debug\netcoreapp3.1\Razor\Views\Admission\Index.cshtml.g.cs
+E:\work\GitHub\AdmissionWebsite\AdmissionWebsiteFinal\AdmissionWebsiteFinal\obj\Debug\netcoreapp3.1\Razor\Views\Admission\EntryDetails.cshtml.g.cs

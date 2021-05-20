@@ -5,10 +5,16 @@
 }
 
 <h1>Index</h1>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+<form asp-action="RegisterError">
+    <div class="form-row mb-4 mt-3">
+        <div class="col-5">
+            <input type="text" class="form-control">
+        </div>
+        <div class="col">
+            <button type="submit" class="btn btn-primary">Search</button>
+        </div>
+    </div>
+</form>
 <table class="table text-nowrap table-bordered table-striped">
     <thead>
         <tr>
@@ -34,32 +40,33 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EntryScore)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ContestantId)
-            </td>
-            <th class="font-weight-normal">
-                @Html.DisplayFor(modelItem => item.Contestant.FirstName)
-            </th>
-            <th class="font-weight-normal">
-                @Html.DisplayFor(modelItem => item.Contestant.LastName)
-            </th>
-            <td>
-                @Html.DisplayFor(modelItem => item.DateCreated)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="EntryDetails" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EntryScore)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ContestantId)
+                </td>
+                <th class="font-weight-normal">
+                    @Html.DisplayFor(modelItem => item.Contestant.FirstName)
+                </th>
+                <th class="font-weight-normal">
+                    @Html.DisplayFor(modelItem => item.Contestant.LastName)
+                </th>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateCreated)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="EntryDetails" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

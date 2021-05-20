@@ -7,58 +7,70 @@
 <h1>Register</h1>
 
 <hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="RegisterContestant">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<form asp-action="RegisterContestant">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="form-row">
+        <div class="col-md-4 mb-3">
             <div class="form-group">
                 <label asp-for="Contestant.FirstName" class="control-label"></label>
                 <input asp-for="Contestant.FirstName" class="form-control" />
                 <span asp-validation-for="Contestant.FirstName" class="text-danger"></span>
             </div>
+        </div>
+        <div class="col-md-4 mb-3">
             <div class="form-group">
                 <label asp-for="Contestant.LastName" class="control-label"></label>
                 <input asp-for="Contestant.LastName" class="form-control" />
                 <span asp-validation-for="Contestant.LastName" class="text-danger"></span>
             </div>
+        </div>
+        <div class="col-md-4 mb-3">
             <div class="form-group">
                 <label asp-for="Contestant.Id" class="control-label"></label>
                 <input asp-for="Contestant.Id" class="form-control" />
                 <span asp-validation-for="Contestant.Id" class="text-danger"></span>
             </div>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-md-4 mb-3">
             <div class="form-group">
                 <label asp-for="Contestant.Email" class="control-label"></label>
                 <input asp-for="Contestant.Email" class="form-control" />
                 <span asp-validation-for="Contestant.Email" class="text-danger"></span>
             </div>
+        </div>
+        <div class="col-md-4 mb-3">
             <div class="form-group">
                 <label asp-for="Contestant.PhoneNumber" class="control-label"></label>
                 <input asp-for="Contestant.PhoneNumber" class="form-control" />
                 <span asp-validation-for="Contestant.PhoneNumber" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Contestant.Adress" class="control-label"></label>
-                <input asp-for="Contestant.Adress" class="form-control" />
-                <span asp-validation-for="Contestant.Adress" class="text-danger"></span>
-            </div>
+        </div>
+        <div class="col-md-4 mb-3">
             <div class="form-group">
                 <label asp-for="Contestant.DateOfBirth" class="control-label"></label>
                 <input asp-for="Contestant.DateOfBirth" class="form-control" />
                 <span asp-validation-for="Contestant.DateOfBirth" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="EntryScore" class="control-label"></label>
-                <input asp-for="EntryScore" class="form-control" />
-                <span asp-validation-for="EntryScore" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="EntryOptionId" class="control-label"></label>
-                @Html.DropDownList("EntryOptionId", new MultiSelectList(Model.EntryOptions, "Id", "Name"), new { @class = "form-control", multiple = "multiple", id = "entryOptionList" })
-                <span asp-validation-for="EntryOptionId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Register Contestant" class="btn btn-primary" />
-            </div>
-        </form>
+        </div>
     </div>
-</div>
+    <div class="form-group w-75">
+        <label asp-for="Contestant.Adress" class="control-label"></label>
+        <input asp-for="Contestant.Adress" class="form-control" />
+        <span asp-validation-for="Contestant.Adress" class="text-danger"></span>
+    </div>
+    <div class="form-group w-25">
+        <label asp-for="EntryScore" class="control-label"></label>
+        <input asp-for="EntryScore" class="form-control" />
+        <span asp-validation-for="EntryScore" class="text-danger"></span>
+    </div>
+    <div class="form-group w-25">
+        <label asp-for="EntryOptionId" class="control-label"></label>
+        @Html.DropDownList("EntryOptionId", new MultiSelectList(Model.EntryOptions, "Id", "Name"), new { @class = "form-control", multiple = "multiple", id = "entryOptionList" })
+        <span asp-validation-for="EntryOptionId" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Register Contestant" class="btn btn-primary" />
+    </div>
+</form>

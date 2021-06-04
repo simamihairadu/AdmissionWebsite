@@ -9,5 +9,7 @@ namespace AdmissionWebsiteFinal.Persistence
     public interface IAdmissionEntryRepository : IRepository<AdmissionEntry>
     {
         AdmissionEntry GetAdmissionEntryByContestant(string id);
+        List<AdmissionEntry> GetAdmissionEntriesBySessionId(int sessionId);
+        IEnumerable<AdmissionEntry> GetAdmissionEntriesByOptionId(int sessionId);
     }
 }

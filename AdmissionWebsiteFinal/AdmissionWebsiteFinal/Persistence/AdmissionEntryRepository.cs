@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using AdmissionWebsiteFinal.Data;
 
 namespace AdmissionWebsiteFinal.Persistence
@@ -14,6 +15,42 @@ namespace AdmissionWebsiteFinal.Persistence
         public AdmissionEntry GetAdmissionEntryByContestant(string id)
         {
             return ApplicationDbContext.AdmissionEntries.Where(a => a.ContestantId == id).FirstOrDefault();
+        }
+
+        public override AdmissionEntry Get(int id)
+        {
+            return ApplicationDbContext.AdmissionEntries.Where(a => a.Id == id).
+                Include(a => a.Contestant).FirstOrDefault();
+        }
+
+        public List<AdmissionEntry> GetAdmissionEntriesBySessionId(int sessionId)
+        {
+            var options = ApplicationDbContext.EntryOptions.Include(o => o.AdmissionEntry).
+                Include(o => o.Option).
+                Include(e => e.AdmissionEntry.Contestant).
+                Where(o => o.Option.SessionId == sessionId);
+
+            HashSet<AdmissionEntry> entries = new HashSet<AdmissionEntry>();
+            foreach (var item in options)
+            {
+                entries.Add(item.AdmissionEntry);
+            }
+            return entries.ToList();
+        }
+
+        public IEnumerable<AdmissionEntry> GetAdmissionEntriesByOptionId(int optionId)
+        {
+            var entryOptions = ApplicationDbContext.EntryOptions.Where(e => e.OptionId == optionId).
+                Include(e =>e.AdmissionEntry).
+                Include(e => e.AdmissionEntry.Contestant).
+                OrderByDescending(e => e.AdmissionEntry.EntryScore);
+            List<AdmissionEntry> entries = new List<AdmissionEntry>();
+
+            foreach (var item in entryOptions)
+            {
+                entries.Add(item.AdmissionEntry);
+            }
+            return entries;
         }
     }
 }

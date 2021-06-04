@@ -78,10 +78,6 @@ namespace AdmissionWebsiteFinal.Controllers
         {
             var session = mapper.Map<SessionViewModel>(unitOfWork.Sessions.Get(id));
             var options = mapper.Map<IEnumerable<OptionViewModel>>(unitOfWork.Options.GetOptionsBySessionId(id));
-            foreach (var option in options)
-            {
-                option.Name = unitOfWork.Specializations.GetNameById(option.SpecializationId);
-            }
             session.Options = options;
             return View(session);
         }

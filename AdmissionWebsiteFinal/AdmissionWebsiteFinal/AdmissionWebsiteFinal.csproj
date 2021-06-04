@@ -35,6 +35,10 @@
     <Compile Remove="Data\Migrations\20210513164934_AddedOptionEntry.Designer.cs" />
     <Compile Remove="Data\Migrations\20210515201303_SeedSpecialization.cs" />
     <Compile Remove="Data\Migrations\20210515201303_SeedSpecialization.Designer.cs" />
+    <Compile Remove="Data\Migrations\20210525192729_addedSessionToEntryFK.cs" />
+    <Compile Remove="Data\Migrations\20210525192729_addedSessionToEntryFK.Designer.cs" />
+    <Compile Remove="Data\Migrations\20210525192816_addedSessionToEntryFK.cs" />
+    <Compile Remove="Data\Migrations\20210525192816_addedSessionToEntryFK.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

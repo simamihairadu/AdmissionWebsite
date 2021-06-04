@@ -1,4 +1,5 @@
 ﻿using AdmissionWebsiteFinal.Data;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,9 @@ namespace AdmissionWebsiteFinal.Persistence
 
         public List<EntryOption> GetEntryOptionsByEntryId(int entryId)
         {
-            return ApplicationDbContext.EntryOptions.Where(o => o.AdmissionEntryId == entryId).ToList();
+            return ApplicationDbContext.EntryOptions.Where(o => o.AdmissionEntryId == entryId).
+                Include(o => o.Option).
+                Include(o => o.Option.Specialization).ToList();
         }
     }
 }

@@ -1,0 +1,131 @@
+﻿@model AdmissionWebsiteFinal.Models.StandingViewModel
+
+<form asp-action="Index">
+    <div class="container">
+        <div class="form-group">
+            @Html.DropDownListFor(m => m.OptionId, new SelectList(Model.Options, "Id", "Specialization.Name"), "Select Specialization", new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Get" class="btn btn-primary" />
+        </div>
+    </div>
+</form>
+<h1>Buget</h1>
+<table class="table text-nowrap table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>
+                Id
+            </th>
+            <th>
+                Score
+            </th>
+            <th>
+                CNP
+            </th>
+            <th>
+                First Name
+            </th>
+            <th>
+                Last Name
+            </th>
+            <th>
+                Date Created
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    @if (Model.BugetEntries != null)
+    {
+        <tbody>
+            @foreach (var item in Model.BugetEntries)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EntryScore)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ContestantId)
+                    </td>
+                    <th class="font-weight-normal">
+                        @Html.DisplayFor(modelItem => item.Contestant.FirstName)
+                    </th>
+                    <th class="font-weight-normal">
+                        @Html.DisplayFor(modelItem => item.Contestant.LastName)
+                    </th>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DateCreated)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                        <a asp-controller="Admission" asp-action="EntryDetails" asp-route-id="@item.Id">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    }
+</table>
+
+<h1>Taxa</h1>
+<table class="table text-nowrap table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>
+                Id
+            </th>
+            <th>
+                Score
+            </th>
+            <th>
+                CNP
+            </th>
+            <th>
+                First Name
+            </th>
+            <th>
+                Last Name
+            </th>
+            <th>
+                Date Created
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    @if (Model.TaxaEntries != null)
+    {
+        <tbody>
+            @foreach (var item in Model.TaxaEntries)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EntryScore)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ContestantId)
+                    </td>
+                    <th class="font-weight-normal">
+                        @Html.DisplayFor(modelItem => item.Contestant.FirstName)
+                    </th>
+                    <th class="font-weight-normal">
+                        @Html.DisplayFor(modelItem => item.Contestant.LastName)
+                    </th>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DateCreated)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                        <a asp-controller="Admission" asp-action="EntryDetails" asp-route-id="@item.Id">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    }
+</table>

@@ -1336,3 +1336,4 @@ E:\work\GitHub\AdmissionWebsite\AdmissionWebsiteFinal\AdmissionWebsiteFinal\obj\
 E:\work\GitHub\AdmissionWebsite\AdmissionWebsiteFinal\AdmissionWebsiteFinal\obj\Debug\netcoreapp3.1\Razor\Views\Session\AddOption.cshtml.g.cs
 E:\work\GitHub\AdmissionWebsite\AdmissionWebsiteFinal\AdmissionWebsiteFinal\obj\Debug\netcoreapp3.1\Razor\Views\Admission\Index.cshtml.g.cs
 E:\work\GitHub\AdmissionWebsite\AdmissionWebsiteFinal\AdmissionWebsiteFinal\obj\Debug\netcoreapp3.1\Razor\Views\Admission\EntryDetails.cshtml.g.cs
+E:\work\GitHub\AdmissionWebsite\AdmissionWebsiteFinal\AdmissionWebsiteFinal\obj\Debug\netcoreapp3.1\Razor\Views\Standings\Index.cshtml.g.cs

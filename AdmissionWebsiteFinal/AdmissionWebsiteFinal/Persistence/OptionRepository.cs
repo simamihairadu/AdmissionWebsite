@@ -1,4 +1,5 @@
 ﻿using AdmissionWebsiteFinal.Data;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,8 @@ namespace AdmissionWebsiteFinal.Persistence
 
         public IEnumerable<Option> GetOptionsBySessionId(int sessionId)
         {
-            return ApplicationDbContext.Options.Where(o => o.SessionId == sessionId).ToList();
+            return ApplicationDbContext.Options.Where(o => o.SessionId == sessionId).
+                Include(o => o.Specialization).ToList();
         }
     }
 }

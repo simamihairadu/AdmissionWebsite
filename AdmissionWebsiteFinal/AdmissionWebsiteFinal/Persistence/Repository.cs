@@ -15,7 +15,7 @@ namespace AdmissionWebsiteFinal.Persistence
             this.context = context;
         }
 
-        public TEntity Get(int id)
+        public virtual TEntity Get(int id)
         {
             return context.Set<TEntity>().Find(id);
         }

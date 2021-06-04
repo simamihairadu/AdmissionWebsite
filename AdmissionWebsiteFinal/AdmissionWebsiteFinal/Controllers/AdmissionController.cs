@@ -26,14 +26,8 @@ namespace AdmissionWebsiteFinal.Controllers
         }
         public ActionResult Index()
         {
-            var admissionEntries = unitOfWork.AdmissionEntries.GetAll();
+            var admissionEntries = unitOfWork.AdmissionEntries.GetAdmissionEntriesBySessionId(unitOfWork.Sessions.GetActiveSession().Id);
             var admissionEntryViewModels = mapper.Map<List<AdmissionEntryViewModel>>(admissionEntries);
-
-            foreach (var item in admissionEntryViewModels)
-            {
-                var contestant = unitOfWork.Contestants.Get(item.ContestantId);
-                item.Contestant = mapper.Map<ContestantViewModel>(contestant);
-            }
 
             return View(admissionEntryViewModels);
         }
@@ -41,24 +35,14 @@ namespace AdmissionWebsiteFinal.Controllers
         public ActionResult EntryDetails(int id)
         {
             var admissionEntryViewModel = mapper.Map<AdmissionEntryViewModel>(unitOfWork.AdmissionEntries.Get(id));
-            var contestantViewModel = mapper.Map<ContestantViewModel>(unitOfWork.Contestants.Get(admissionEntryViewModel.ContestantId));
             var entryOptions = unitOfWork.EntryOptions.GetEntryOptionsByEntryId(admissionEntryViewModel.Id);
-            contestantViewModel.Id = admissionEntryViewModel.ContestantId;
             List<Option> options = new List<Option>();
 
             foreach (var entryOption in entryOptions)
             {
-                options.Add(unitOfWork.Options.Get(entryOption.OptionId));
+                options.Add(entryOption.Option);
             }
-
             var mappedOptions = mapper.Map<List<OptionViewModel>>(options);
-
-            foreach (var option in mappedOptions)
-            {
-                option.Name = unitOfWork.Specializations.GetNameById(option.SpecializationId);
-            }
-
-            admissionEntryViewModel.Contestant = contestantViewModel;
             admissionEntryViewModel.Options = mappedOptions;
 
             return View(admissionEntryViewModel);
@@ -79,7 +63,7 @@ namespace AdmissionWebsiteFinal.Controllers
             if (unitOfWork.Sessions.IsAnyActive())
             {
                 var session = unitOfWork.Sessions.GetActiveSession();
-                var entryOptions = mapper.Map<IEnumerable<EntryOptionViewModel>>(unitOfWork.Options.GetOptionsBySessionId(session.Id));
+                var entryOptions = mapper.Map<List<EntryOptionViewModel>>(unitOfWork.Options.GetOptionsBySessionId(session.Id));
                 foreach (var option in entryOptions)
                 {
                     option.Name = unitOfWork.Specializations.GetNameById(option.SpecializationId);

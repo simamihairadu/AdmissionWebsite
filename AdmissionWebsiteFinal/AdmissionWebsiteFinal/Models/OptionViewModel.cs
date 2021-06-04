@@ -13,7 +13,7 @@ namespace AdmissionWebsiteFinal.Models
         [Required]
         [Display(Name = "Specializations")]
         public int SpecializationId { get; set; }
-        public string Name { get; set; }
+        public SpecializationViewModel Specialization { get; set; }
         public IEnumerable<SpecializationViewModel> Specializations{ get; set; }
         [Required]
         [Display(Name = "Locuri buget")]

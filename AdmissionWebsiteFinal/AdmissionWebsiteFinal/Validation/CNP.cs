@@ -11,9 +11,9 @@ namespace AdmissionWebsiteFinal.Validation
     {
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
-            var contestant = (ContestantViewModel)validationContext.ObjectInstance;
+            var contestant = (IContestant)validationContext.ObjectInstance;
 
-            if (contestant.Id != null && contestant.Id.Length == 13 & CheckIfAllDigits(contestant.Id))
+            if (contestant.GetId() != null && contestant.GetId().Length == 13 & CheckIfAllDigits(contestant.GetId()))
             {
                 return ValidationResult.Success;
             }

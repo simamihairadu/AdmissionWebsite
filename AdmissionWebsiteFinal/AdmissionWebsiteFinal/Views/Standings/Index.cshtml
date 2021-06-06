@@ -60,9 +60,7 @@
                         @Html.DisplayFor(modelItem => item.DateCreated)
                     </td>
                     <td>
-                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                        <a asp-controller="Admission" asp-action="EntryDetails" asp-route-id="@item.Id">Details</a> |
-                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                        <a asp-controller="Admission" asp-action="EntryDetails" asp-route-id="@item.Id">Details</a>
                     </td>
                 </tr>
             }
@@ -120,9 +118,123 @@
                         @Html.DisplayFor(modelItem => item.DateCreated)
                     </td>
                     <td>
-                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                        <a asp-controller="Admission" asp-action="EntryDetails" asp-route-id="@item.Id">Details</a> |
-                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                        <a asp-controller="Admission" asp-action="EntryDetails" asp-route-id="@item.Id">Details</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    }
+</table>
+
+<h2>Locuri Rrom</h2>
+<table class="table text-nowrap table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>
+                Id
+            </th>
+            <th>
+                Score
+            </th>
+            <th>
+                CNP
+            </th>
+            <th>
+                First Name
+            </th>
+            <th>
+                Last Name
+            </th>
+            <th>
+                Date Created
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    @if (Model.RromEntries != null)
+    {
+        <tbody>
+            @foreach (var item in Model.RromEntries)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EntryScore)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ContestantId)
+                    </td>
+                    <th class="font-weight-normal">
+                        @Html.DisplayFor(modelItem => item.Contestant.FirstName)
+                    </th>
+                    <th class="font-weight-normal">
+                        @Html.DisplayFor(modelItem => item.Contestant.LastName)
+                    </th>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DateCreated)
+                    </td>
+                    <td>
+                        <a asp-controller="Admission" asp-action="EntryDetails" asp-route-id="@item.Id">Details</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    }
+</table>
+
+<h2>Locuri Romani de pretutindeni</h2>
+<table class="table text-nowrap table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>
+                Id
+            </th>
+            <th>
+                Score
+            </th>
+            <th>
+                CNP
+            </th>
+            <th>
+                First Name
+            </th>
+            <th>
+                Last Name
+            </th>
+            <th>
+                Date Created
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    @if (Model.RDPEntries != null)
+    {
+        <tbody>
+            @foreach (var item in Model.RDPEntries)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EntryScore)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ContestantId)
+                    </td>
+                    <th class="font-weight-normal">
+                        @Html.DisplayFor(modelItem => item.Contestant.FirstName)
+                    </th>
+                    <th class="font-weight-normal">
+                        @Html.DisplayFor(modelItem => item.Contestant.LastName)
+                    </th>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DateCreated)
+                    </td>
+                    <td>
+                        <a asp-controller="Admission" asp-action="EntryDetails" asp-route-id="@item.Id">Details</a>
                     </td>
                 </tr>
             }

@@ -26,10 +26,14 @@ namespace AdmissionWebsiteFinal.Controllers
         }
         public ActionResult Index()
         {
-            var admissionEntries = unitOfWork.AdmissionEntries.GetAdmissionEntriesBySessionId(unitOfWork.Sessions.GetActiveSession().Id);
-            var admissionEntryViewModels = mapper.Map<List<AdmissionEntryViewModel>>(admissionEntries);
+            if(unitOfWork.Sessions.IsAnyActive())
+            {
+                var admissionEntries = unitOfWork.AdmissionEntries.GetAdmissionEntriesBySessionId(unitOfWork.Sessions.GetActiveSession().Id);
+                var admissionEntryViewModels = mapper.Map<List<AdmissionEntryViewModel>>(admissionEntries);
+                return View(admissionEntryViewModels);
+            }
 
-            return View(admissionEntryViewModels);
+            return View("RegisterError");
         }
 
         public ActionResult EntryDetails(int id)
@@ -76,14 +80,78 @@ namespace AdmissionWebsiteFinal.Controllers
             }
             return null;
         }
+        public ActionResult RegisterExisting()
+        {
+            var admissionEntryViewModel = GetAdmissionEntryViewModel();
+            if (admissionEntryViewModel != null)
+            {
+                var existingContestantViewModel = new ExistingContestantViewModel
+                {
+                    EntryOptions = admissionEntryViewModel.EntryOptions
+                };
+                return View(existingContestantViewModel);
+            }
+            return View("RegisterError");
+        }
 
+        [HttpPost]
+        public ActionResult RegisterExisting(ExistingContestantViewModel model,int[] entryOptionId)
+        {
+            try
+            {
+                var contestant = unitOfWork.Contestants.Get(model.ContestantId);
+                if (contestant == null)
+                {
+                    ModelState.AddModelError("ContestantId", "CNP doen't exist.");
+                }
+                if (!ModelState.IsValid)
+                {
+                    return View(GetAdmissionEntryViewModel());
+                }
+
+                var employee = userManager.GetUserAsync(User).Result;
+                var admissionEntry = new AdmissionEntry
+                {
+                    ContestantId = contestant.ContestantId,
+                    EntryScore = model.EntryScore,
+                    EmployeeId = employee.Id,
+                    DateCreated = DateTime.Now,
+                    RromSpot = model.RromSpot,
+                    RDPSpot = model.RDPSpot
+                };
+                unitOfWork.AdmissionEntries.Add(admissionEntry);
+                unitOfWork.Complete();
+
+                admissionEntry = unitOfWork.AdmissionEntries.GetAdmissionEntryByContestant(contestant.ContestantId);
+
+                foreach (int id in entryOptionId)
+                {
+                    unitOfWork.EntryOptions.Add(new EntryOption
+                    {
+                        OptionId = id,
+                        AdmissionEntryId = admissionEntry.Id
+                    });
+                }
+                unitOfWork.Complete();
+
+                return RedirectToAction(nameof(Index));
+            }
+            catch(Exception e)
+            {
+                return View(GetAdmissionEntryViewModel());
+            }
+        }
         [HttpPost]
         public ActionResult RegisterContestant(AdmissionEntryViewModel model,int[] entryOptionId)
         {
             try
             {
-                if (!ModelState.IsValid)
+                if(unitOfWork.Contestants.Get(model.Contestant.Id) != null)
                 {
+                    ModelState.AddModelError("Contestant.Id", "CNP already exists. Use \"Add existing\" instead.");
+                }
+                if (!ModelState.IsValid)
+                { 
                     return View(GetAdmissionEntryViewModel());
                 }
 
@@ -98,7 +166,9 @@ namespace AdmissionWebsiteFinal.Controllers
                     ContestantId = contestant.ContestantId,
                     EntryScore = model.EntryScore,
                     EmployeeId = employee.Id,
-                    DateCreated = DateTime.Now
+                    DateCreated = DateTime.Now,
+                    RromSpot = model.RromSpot,
+                    RDPSpot = model.RDPSpot
                 };
                 unitOfWork.AdmissionEntries.Add(admissionEntry);
                 unitOfWork.Complete();

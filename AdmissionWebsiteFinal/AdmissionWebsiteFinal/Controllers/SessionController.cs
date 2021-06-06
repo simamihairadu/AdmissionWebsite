@@ -105,10 +105,12 @@ namespace AdmissionWebsiteFinal.Controllers
             {
                 var option = mapper.Map<Option>(optionViewModel);
                 var session = unitOfWork.Sessions.GetActiveSession();
-
-                if (!ModelState.IsValid || unitOfWork.Options.GetOptionsBySessionId(session.Id).Where(o => o.SpecializationId == option.SpecializationId).FirstOrDefault() != null)
+                if(unitOfWork.Options.GetOptionsBySessionId(session.Id).Where(o => o.SpecializationId == option.SpecializationId).FirstOrDefault() != null)
                 {
                     ModelState.AddModelError("SpecializationId", "Option already exists.");
+                }
+                if (!ModelState.IsValid)
+                {
                     return View(GetOptionViewModel());
                 }
 

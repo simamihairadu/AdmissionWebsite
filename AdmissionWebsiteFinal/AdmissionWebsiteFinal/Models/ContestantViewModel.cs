@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AdmissionWebsiteFinal.Models
 {
-    public class ContestantViewModel
+    public class ContestantViewModel : IContestant
     {
         [Required]
         [CNP]
@@ -32,5 +32,10 @@ namespace AdmissionWebsiteFinal.Models
         [Display(Name = "Date of birth")]
         [DataType(DataType.Date)]
         public DateTime DateOfBirth { get; set; }
+
+        public string GetId()
+        {
+            return Id;
+        }
     }
 }

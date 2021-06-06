@@ -14,7 +14,9 @@ namespace AdmissionWebsiteFinal.Persistence
 
         public AdmissionEntry GetAdmissionEntryByContestant(string id)
         {
-            return ApplicationDbContext.AdmissionEntries.Where(a => a.ContestantId == id).FirstOrDefault();
+            var entry = ApplicationDbContext.AdmissionEntries.Where(a => a.ContestantId == id).
+                OrderByDescending(a => a.Id).First();
+            return entry;
         }
 
         public override AdmissionEntry Get(int id)

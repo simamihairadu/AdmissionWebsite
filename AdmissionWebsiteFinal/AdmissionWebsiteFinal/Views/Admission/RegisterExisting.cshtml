@@ -1,0 +1,50 @@
+﻿@model AdmissionWebsiteFinal.Models.ExistingContestantViewModel
+
+@{
+    ViewData["Title"] = "RegisterExisting";
+}
+
+<h1>RegisterExisting</h1>
+
+<h4>AdmissionEntryViewModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="RegisterExisting">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="EntryScore" class="control-label"></label>
+                <input asp-for="EntryScore" class="form-control" />
+                <span asp-validation-for="EntryScore" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ContestantId" class="control-label"></label>
+                <input asp-for="ContestantId" class="form-control" />
+                <span asp-validation-for="ContestantId" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="RromSpot" /> @Html.DisplayNameFor(model => model.RromSpot)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="RDPSpot" /> @Html.DisplayNameFor(model => model.RDPSpot)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="EntryOptionId" class="control-label"></label>
+                @Html.DropDownList("EntryOptionId", new MultiSelectList(Model.EntryOptions, "Id", "Name"), new { @class = "form-control", multiple = "multiple", id = "entryOptionList" })
+                <span asp-validation-for="EntryOptionId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

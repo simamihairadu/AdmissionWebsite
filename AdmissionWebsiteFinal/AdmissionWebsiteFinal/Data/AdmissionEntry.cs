@@ -19,6 +19,8 @@ namespace AdmissionWebsiteFinal.Data
         [ForeignKey("EmployeeId")]
         public Employee Employee { get; set; }
         public string EmployeeId { get; set; }
+        public bool RromSpot { get; set; }
+        public bool RDPSpot { get; set; }
         public DateTime DateCreated { get; set; }
     }
 }

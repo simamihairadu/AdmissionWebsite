@@ -39,6 +39,8 @@
     <Compile Remove="Data\Migrations\20210525192729_addedSessionToEntryFK.Designer.cs" />
     <Compile Remove="Data\Migrations\20210525192816_addedSessionToEntryFK.cs" />
     <Compile Remove="Data\Migrations\20210525192816_addedSessionToEntryFK.Designer.cs" />
+    <Compile Remove="Data\Migrations\20210607210211_migrationToCheck.cs" />
+    <Compile Remove="Data\Migrations\20210607210211_migrationToCheck.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -51,6 +53,7 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.13" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.13" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
+    <PackageReference Include="Syncfusion.Pdf.Net.Core" Version="19.1.0.66" />
   </ItemGroup>
 
 </Project>

@@ -1338,3 +1338,6 @@ E:\work\GitHub\AdmissionWebsite\AdmissionWebsiteFinal\AdmissionWebsiteFinal\obj\
 E:\work\GitHub\AdmissionWebsite\AdmissionWebsiteFinal\AdmissionWebsiteFinal\obj\Debug\netcoreapp3.1\Razor\Views\Admission\EntryDetails.cshtml.g.cs
 E:\work\GitHub\AdmissionWebsite\AdmissionWebsiteFinal\AdmissionWebsiteFinal\obj\Debug\netcoreapp3.1\Razor\Views\Standings\Index.cshtml.g.cs
 E:\work\GitHub\AdmissionWebsite\AdmissionWebsiteFinal\AdmissionWebsiteFinal\obj\Debug\netcoreapp3.1\Razor\Views\Admission\RegisterExisting.cshtml.g.cs
+E:\work\GitHub\AdmissionWebsite\AdmissionWebsiteFinal\AdmissionWebsiteFinal\bin\Debug\netcoreapp3.1\Syncfusion.Compression.Portable.dll
+E:\work\GitHub\AdmissionWebsite\AdmissionWebsiteFinal\AdmissionWebsiteFinal\bin\Debug\netcoreapp3.1\Syncfusion.Licensing.dll
+E:\work\GitHub\AdmissionWebsite\AdmissionWebsiteFinal\AdmissionWebsiteFinal\bin\Debug\netcoreapp3.1\Syncfusion.Pdf.Portable.dll

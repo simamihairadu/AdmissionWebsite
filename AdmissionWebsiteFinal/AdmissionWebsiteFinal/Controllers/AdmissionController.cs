@@ -102,7 +102,7 @@ namespace AdmissionWebsiteFinal.Controllers
                 var contestant = unitOfWork.Contestants.Get(model.ContestantId);
                 if (contestant == null)
                 {
-                    ModelState.AddModelError("ContestantId", "CNP doen't exist.");
+                    ModelState.AddModelError("ContestantId", "CNP dosen't exist.");
                 }
                 if (!ModelState.IsValid)
                 {

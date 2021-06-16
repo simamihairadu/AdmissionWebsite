@@ -68,14 +68,6 @@ namespace AdmissionWebsiteFinal.Controllers
             return View(standingViewModel);
         }
 
-        public IActionResult StandingsByOption(int optionId,StandingViewModel standingViewModel)
-        {
-            var option = unitOfWork.Options.Get(optionId);
-            var entries = unitOfWork.AdmissionEntries.GetAdmissionEntriesByOptionId(optionId);
-            standingViewModel.BugetEntries = mapper.Map<IEnumerable<AdmissionEntryViewModel>>(entries).Take(option.LocuriBuget);
-            return View("Index",standingViewModel);
-        }
-
         public IActionResult StandingsToPdf()
         {
             PdfExporter pdfExporter = new PdfExporter();

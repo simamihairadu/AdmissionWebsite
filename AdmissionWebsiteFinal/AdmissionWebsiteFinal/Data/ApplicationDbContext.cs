@@ -22,5 +22,6 @@ namespace AdmissionWebsiteFinal.Data
         public DbSet<Department> Departments { get; set; }
         public DbSet<Session> Sessions { get; set; }
         public DbSet<Employee> Employees { get; set; }
+        public DbSet<AdmissionWebsiteFinal.Models.EmployeeViewModel> EmployeeViewModel { get; set; }
     }
 }

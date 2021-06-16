@@ -45,11 +45,10 @@ namespace AdmissionWebsiteFinal.Controllers
             entries.RemoveAll(e => rdpEntries.Contains(e));
             return rdpEntries;
         }
-        public IActionResult Index(StandingViewModel standingViewModel)
+        public IActionResult Index(StandingViewModel standingViewModel,int id)
         {
             var option = unitOfWork.Options.Get(standingViewModel.OptionId);
-            var session = mapper.Map<SessionViewModel>(unitOfWork.Sessions.GetActiveSession());
-            var options = mapper.Map<IEnumerable<OptionViewModel>>(unitOfWork.Options.GetOptionsBySessionId(session.Id));
+            var options = mapper.Map<IEnumerable<OptionViewModel>>(unitOfWork.Options.GetOptionsBySessionId(id));
 
             var entries = unitOfWork.AdmissionEntries.GetAdmissionEntriesByOptionId(standingViewModel.OptionId).ToList();
             if(option != null)

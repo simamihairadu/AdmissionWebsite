@@ -24,6 +24,11 @@ namespace AdmissionWebsiteFinal.Controllers
         public ActionResult Index()
         {
             var sessionList = mapper.Map<List<SessionViewModel>>(unitOfWork.Sessions.GetAll());
+            if (unitOfWork.Sessions.IsAnyActive())
+            {
+                SessionViewModel.CurrentActiveSession = mapper.Map<SessionViewModel>(unitOfWork.Sessions.GetActiveSession());
+            }
+
             return View(sessionList);
         }
 
@@ -134,7 +139,7 @@ namespace AdmissionWebsiteFinal.Controllers
             session.Active = false;
             unitOfWork.Sessions.Update(session);
             unitOfWork.Complete();
-
+            SessionViewModel.CurrentActiveSession = null;
             var sessionList = mapper.Map<List<SessionViewModel>>(unitOfWork.Sessions.GetAll());
 
             return View("Index", sessionList);

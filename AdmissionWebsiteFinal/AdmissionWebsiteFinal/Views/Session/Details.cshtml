@@ -31,6 +31,15 @@
         </dd>
     </dl>
 </div>
+@if(Model.Active)
+{
+<div class="d-flex justify-content-end">
+    <a asp-action="End" asp-route-id="@Model.Id" class="btn btn-danger">End Session</a>
+</div>
+}
+<div class="d-flex justify-content-end mt-2">
+    <a asp-action="Index" asp-controller="Standings" asp-route-id="@Model.Id" class="btn btn-primary">Standings</a>
+</div>
 <div>
     <h4>Specializations</h4>
     <br />

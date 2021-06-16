@@ -10,6 +10,59 @@
     <a asp-action="Create">Add session</a>
 </p>
 @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+<h3>Current Active Session</h3>
+@if (SessionViewModel.CurrentActiveSession != null)
+{
+@if (SessionViewModel.CurrentActiveSession.Expired)
+{
+    <p class="text-danger">
+        Session expired.
+    </p>
+}
+<div class="container mb-5">
+    <table class="table table-bordered @(SessionViewModel.CurrentActiveSession.Expired ? "table-danger" : "table-success")">
+        <thead>
+            <tr>
+                <th>
+                    Id
+                </th>
+                <th>
+                    Start Date
+                </th>
+                <th>
+                    End Date
+                </th>
+                <th>
+                    Active
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    @SessionViewModel.CurrentActiveSession.Id
+                </td>
+                <td>
+                    @SessionViewModel.CurrentActiveSession.StartDate
+                </td>
+                <td>
+                    @SessionViewModel.CurrentActiveSession.EndDate
+                </td>
+                <td>
+                    @(SessionViewModel.CurrentActiveSession.Active ? "Yes" : "No")
+                </td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@SessionViewModel.CurrentActiveSession.Id">Details</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+}
+<h3 class="mb-5">
+    Session History
+</h3>
 <table class="table text-nowrap table-bordered table-striped">
     <thead>
         <tr>
@@ -29,26 +82,26 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.StartDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EndDate)
-            </td>
-            <td>
-                @(item.Active?"Yes":"No")
-            </td>
-            <td>
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a> |
-                <a asp-action="End" asp-route-id="@item.Id">End</a> |
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StartDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EndDate)
+                </td>
+                <td>
+                    @(item.Active?"Yes":"No")
+                </td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a> |
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

@@ -29,6 +29,15 @@ namespace AdmissionWebsiteFinal
 
                 var result = roleManager.CreateAsync(role).Result;
             }
+            if (!roleManager.RoleExistsAsync("ContestantAccount").Result)
+            {
+                var role = new IdentityRole
+                {
+                    Name = "ContestantAccount"
+                };
+
+                var result = roleManager.CreateAsync(role).Result;
+            }
         }
     }
 }

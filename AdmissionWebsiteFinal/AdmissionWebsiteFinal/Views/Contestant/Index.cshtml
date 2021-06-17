@@ -1,0 +1,59 @@
+﻿@model AdmissionWebsiteFinal.Models.ContestantAccountViewModel
+@{
+    ViewData["Title"] = "Index";
+}
+<h1>My Entries</h1>
+
+<table class="table text-nowrap table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Entry.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Entry.EntryScore)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Entry.ContestantId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Entry.Contestant.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Entry.Contestant.LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Entry.DateCreated)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => modelItem.Entry.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => modelItem.Entry.EntryScore)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => modelItem.Entry.ContestantId)
+                </td>
+                <th class="font-weight-normal">
+                    @Html.DisplayFor(modelItem => modelItem.Entry.Contestant.FirstName)
+                </th>
+                <th class="font-weight-normal">
+                    @Html.DisplayFor(modelItem => modelItem.Entry.Contestant.LastName)
+                </th>
+                <td>
+                    @Html.DisplayFor(modelItem => modelItem.Entry.DateCreated)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@Model.Entry.Id">Edit</a> |
+                    <a asp-action="ContestantEntryDetails" asp-route-id="@Model.Entry.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@Model.Entry.Id">Delete</a>
+                </td>
+            </tr>
+    </tbody>
+</table>
+

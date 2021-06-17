@@ -1,0 +1,112 @@
+﻿@model AdmissionWebsiteFinal.Models.ContestantAccountViewModel
+
+@{
+    ViewData["Title"] = "EntryDetails";
+}
+
+<h1>Entry Details</h1>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Contestant.Id)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Contestant.Id)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Entry.EntryScore)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Entry.EntryScore)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Contestant.FirstName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Contestant.FirstName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Contestant.LastName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Contestant.LastName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Contestant.PhoneNumber)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Contestant.PhoneNumber)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Contestant.Email)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Contestant.Email)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Contestant.Adress)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Contestant.Adress)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Contestant.DateOfBirth)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Contestant.DateOfBirth)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Entry.RromSpot)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Entry.RromSpot)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Entry.RDPSpot)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Entry.RDPSpot)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Entry.Employee)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Entry.EmployeeId)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Entry.DateCreated)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Entry.DateCreated)
+        </dd>
+    </dl>
+</div>
+<div>
+    <h4>Options</h4>
+    @if (Model.EntryOptions != null)
+    {
+        <table class="table text-nowrap table-bordered table-striped">
+            <tbody>
+                @foreach (var item in Model.EntryOptions)
+                {
+                <tr>
+                    <td>
+                        @(item.Specialization.Name)
+                    </td>
+                    <td>
+                        @(item.Confirmed)
+                    </td>
+                    <td>
+                        <a asp-action="ConfirmOption" asp-route-id="@item.Id"><i class="fas fa-check"></i></a>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

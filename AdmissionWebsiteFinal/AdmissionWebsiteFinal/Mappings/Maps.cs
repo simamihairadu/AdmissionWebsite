@@ -19,7 +19,10 @@ namespace AdmissionWebsiteFinal.Mappings
             CreateMap<Specialization, SpecializationViewModel>().ReverseMap();
             CreateMap<Option, OptionViewModel>().ReverseMap();
             CreateMap<Option, EntryOptionViewModel>().ReverseMap();
+            CreateMap<EntryOption, OptionViewModel>().ReverseMap();
+            CreateMap<EntryOption, EntryOptionViewModel>().ReverseMap();
             CreateMap<Employee, EmployeeViewModel>().ReverseMap();
+            CreateMap<ContestantAccount, ContestantAccountViewModel>().ReverseMap();
         }
     }
 }

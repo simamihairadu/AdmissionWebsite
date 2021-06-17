@@ -50,21 +50,30 @@ namespace AdmissionWebsiteFinal.Controllers
             var option = unitOfWork.Options.Get(standingViewModel.OptionId);
             var options = mapper.Map<IEnumerable<OptionViewModel>>(unitOfWork.Options.GetOptionsBySessionId(id));
 
-            var entries = unitOfWork.AdmissionEntries.GetAdmissionEntriesByOptionId(standingViewModel.OptionId).ToList();
+            var entries = unitOfWork.AdmissionEntries.GetAdmissionEntriesByOptionId(standingViewModel.OptionId);
+
             if(option != null)
             {
                 rromEntries = GetRromEntries(ref entries, option.LocuriRrom);
                 rdpEntries = GetRDPEntries(ref entries, option.LocuriRomanDePretutindeni);
                 bugetEntries = entries.Take(option.LocuriBuget).ToList();
                 taxaEntries = entries.Skip(option.LocuriBuget).Take(option.LocuriTaxa).ToList();
+                standingViewModel.BugetEntries = UpdateEntryStatus(mapper.Map<List<AdmissionEntryViewModel>>(bugetEntries), standingViewModel.OptionId);
+                standingViewModel.TaxaEntries = UpdateEntryStatus(mapper.Map<List<AdmissionEntryViewModel>>(taxaEntries), standingViewModel.OptionId);
+                standingViewModel.RromEntries = UpdateEntryStatus(mapper.Map<List<AdmissionEntryViewModel>>(rromEntries), standingViewModel.OptionId);
+                standingViewModel.RDPEntries = UpdateEntryStatus(mapper.Map<List<AdmissionEntryViewModel>>(rdpEntries), standingViewModel.OptionId);
 
-                standingViewModel.BugetEntries = mapper.Map<IEnumerable<AdmissionEntryViewModel>>(bugetEntries);
-                standingViewModel.TaxaEntries = mapper.Map<IEnumerable<AdmissionEntryViewModel>>(taxaEntries);
-                standingViewModel.RromEntries = mapper.Map<IEnumerable<AdmissionEntryViewModel>>(rromEntries);
-                standingViewModel.RDPEntries = mapper.Map<IEnumerable<AdmissionEntryViewModel>>(rdpEntries);
             }
             standingViewModel.Options = options;
             return View(standingViewModel);
+        }
+        private List<AdmissionEntryViewModel> UpdateEntryStatus(List<AdmissionEntryViewModel> entries, int optionId)
+        {
+            foreach(var entry in entries)
+            {
+                entry.ConfirmedOption = unitOfWork.AdmissionEntries.GetEntryStatus(entry.Id, optionId);
+            }
+            return entries;
         }
 
         public IActionResult StandingsToPdf()

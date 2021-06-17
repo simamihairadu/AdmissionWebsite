@@ -10,6 +10,7 @@ namespace AdmissionWebsiteFinal.Persistence
     {
         AdmissionEntry GetAdmissionEntryByContestant(string id);
         List<AdmissionEntry> GetAdmissionEntriesBySessionId(int sessionId);
-        IEnumerable<AdmissionEntry> GetAdmissionEntriesByOptionId(int sessionId);
+        List<AdmissionEntry> GetAdmissionEntriesByOptionId(int sessionId);
+        bool GetEntryStatus(int entryId, int optionId);
     }
 }

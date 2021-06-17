@@ -43,7 +43,7 @@
         <tbody>
             @foreach (var item in Model.BugetEntries)
             {
-                <tr>
+                <tr class=@(item.ConfirmedOption?"table-success":"")>
                     <td>
                         @Html.DisplayFor(modelItem => item.Id)
                     </td>
@@ -101,7 +101,7 @@
         <tbody>
             @foreach (var item in Model.TaxaEntries)
             {
-                <tr>
+                <tr class=@(item.ConfirmedOption?"table-success":"")>
                     <td>
                         @Html.DisplayFor(modelItem => item.Id)
                     </td>
@@ -159,7 +159,7 @@
         <tbody>
             @foreach (var item in Model.RromEntries)
             {
-                <tr>
+                <tr class=@(item.ConfirmedOption?"table-success":"")>
                     <td>
                         @Html.DisplayFor(modelItem => item.Id)
                     </td>
@@ -217,7 +217,7 @@
         <tbody>
             @foreach (var item in Model.RDPEntries)
             {
-                <tr>
+                <tr class=@(item.ConfirmedOption?"table-success":"")>
                     <td>
                         @Html.DisplayFor(modelItem => item.Id)
                     </td>

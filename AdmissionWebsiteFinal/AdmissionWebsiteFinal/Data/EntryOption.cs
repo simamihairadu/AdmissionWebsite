@@ -17,5 +17,6 @@ namespace AdmissionWebsiteFinal.Data
         [ForeignKey("OptionId")]
         public Option Option { get; set; }
         public int OptionId { get; set; }
+        public bool Confirmed { get; set; }
     }
 }

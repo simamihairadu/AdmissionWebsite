@@ -30,5 +30,6 @@ namespace AdmissionWebsiteFinal.Models
         public bool RDPSpot { get; set; }
         [Display(Name = "Date Created")]
         public DateTime DateCreated { get; set; }
+        public bool ConfirmedOption { get; set; }
     }
 }

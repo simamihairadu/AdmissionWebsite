@@ -26,7 +26,7 @@ namespace AdmissionWebsiteFinal.Controllers
         }
         public ActionResult Index()
         {
-            if(unitOfWork.Sessions.IsAnyActive())
+            if (unitOfWork.Sessions.IsAnyActive())
             {
                 var admissionEntries = unitOfWork.AdmissionEntries.GetAdmissionEntriesBySessionId(unitOfWork.Sessions.GetActiveSession().Id);
                 var admissionEntryViewModels = mapper.Map<List<AdmissionEntryViewModel>>(admissionEntries);
@@ -51,7 +51,23 @@ namespace AdmissionWebsiteFinal.Controllers
 
             return View(admissionEntryViewModel);
         }
-
+        private void CreateContestantAccount(Contestant contestant)
+        {
+            //string password = contestant.FirstName + contestant.ContestantId.TakeLast(6);
+            string password = "Parola123!";
+            var user = new ContestantAccount
+            {
+                UserName = contestant.Email,
+                Email = contestant.Email,
+                ContestantId = contestant.ContestantId,
+                EmailConfirmed = true
+            };
+            var result = userManager.CreateAsync(user, password).Result;
+            if (result.Succeeded)
+            {
+                userManager.AddToRoleAsync(user, "ContestantAccount").Wait();
+            }
+        }
         public ActionResult RegisterContestant()
         {
             var admissionEntryViewModel = GetAdmissionEntryViewModel();
@@ -184,6 +200,7 @@ namespace AdmissionWebsiteFinal.Controllers
                     });
                 }
                 unitOfWork.Complete();
+                CreateContestantAccount(contestant);
 
                 return RedirectToAction(nameof(Index));
             }

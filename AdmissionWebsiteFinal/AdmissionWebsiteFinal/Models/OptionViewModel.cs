@@ -15,6 +15,7 @@ namespace AdmissionWebsiteFinal.Models
         public int SpecializationId { get; set; }
         public SpecializationViewModel Specialization { get; set; }
         public IEnumerable<SpecializationViewModel> Specializations{ get; set; }
+        public bool Confirmed { get; set; }
         [Required]
         [Display(Name = "Locuri buget")]
         public int LocuriBuget { get; set; }

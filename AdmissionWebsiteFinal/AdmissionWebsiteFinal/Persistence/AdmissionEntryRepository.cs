@@ -40,7 +40,12 @@ namespace AdmissionWebsiteFinal.Persistence
             return entries.ToList();
         }
 
-        public IEnumerable<AdmissionEntry> GetAdmissionEntriesByOptionId(int optionId)
+        public bool GetEntryStatus(int entryId, int optionId)
+        {
+            return ApplicationDbContext.EntryOptions.Where(e => e.AdmissionEntryId == entryId && e.OptionId == optionId).FirstOrDefault().Confirmed;
+        }
+
+        public List<AdmissionEntry> GetAdmissionEntriesByOptionId(int optionId)
         {
             var entryOptions = ApplicationDbContext.EntryOptions.Where(e => e.OptionId == optionId).
                 Include(e =>e.AdmissionEntry).

@@ -12,9 +12,11 @@ using Syncfusion.Pdf.Graphics;
 using Syncfusion.Drawing;
 using System.IO;
 using AdmissionWebsiteFinal.DataExport;
+using Microsoft.AspNetCore.Authorization;
 
 namespace AdmissionWebsiteFinal.Controllers
 {
+    [Authorize(Roles = "Admin,Employee")]
     public class StandingsController : Controller
     {
         private readonly IMapper mapper;

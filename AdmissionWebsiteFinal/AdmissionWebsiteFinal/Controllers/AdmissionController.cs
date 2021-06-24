@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace AdmissionWebsiteFinal.Controllers
 {
-    [Authorize]
+    [Authorize(Roles="Admin,Employee")]
     public class AdmissionController : Controller
     {
         private readonly IMapper mapper;

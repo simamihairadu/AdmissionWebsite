@@ -87,6 +87,17 @@ namespace AdmissionWebsiteFinal.Controllers
             return View(session);
         }
 
+        public ActionResult StartConfirmationStage(int id)
+        {
+            var session = unitOfWork.Sessions.Get(id);
+
+            session.ConfirmationStage = true;
+            unitOfWork.Sessions.Update(session);
+            unitOfWork.Complete();
+
+            return RedirectToAction(nameof(Index));
+
+        }
         public ActionResult AddOption()
         {
             return View(GetOptionViewModel());

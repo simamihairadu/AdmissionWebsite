@@ -59,5 +59,13 @@ namespace AdmissionWebsiteFinal.Persistence
             }
             return entries;
         }
+
+        public IEnumerable<AdmissionEntry> SearchEntry(string searchTerm,int sessionId)
+        {
+            var entries = GetAdmissionEntriesBySessionId(sessionId);
+            return entries.Where(a => a.ContestantId.Contains(searchTerm) 
+                                   || a.Contestant.FirstName.Contains(searchTerm)
+                                   || a.Contestant.LastName.Contains(searchTerm));
+        }
     }
 }

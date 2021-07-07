@@ -25,7 +25,7 @@ namespace AdmissionWebsiteFinal.Models
         [Display(Name = "Phone Number")]
         public string PhoneNumber { get; set; }
         [Required]
-        [Display(Name = "Adress")]
+        [Display(Name = "Address")]
         public string Adress { get; set; }
         [Required]
         [DateOfBirthRange]

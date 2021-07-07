@@ -42,6 +42,13 @@ namespace AdmissionWebsiteFinal.Controllers
         {
             var admissionEntryViewModel = mapper.Map<AdmissionEntryViewModel>(unitOfWork.AdmissionEntries.Get(id));
             var entryOptions = unitOfWork.EntryOptions.GetEntryOptionsByEntryId(admissionEntryViewModel.Id);
+            var session = entryOptions.First().Option.Session;
+
+            if(session.ConfirmationStage == false)
+            {
+                return View("NoConfirmationStage");
+            }
+
             List<OptionViewModel> mappedOptions = new List<OptionViewModel>();
             foreach (var entryOption in entryOptions)
             {
@@ -55,7 +62,8 @@ namespace AdmissionWebsiteFinal.Controllers
             var contestantAccountViewModel = new ContestantAccountViewModel
             {
                 Entry = admissionEntryViewModel,
-                EntryOptions = mappedOptions
+                EntryOptions = mappedOptions,
+                Contestant = admissionEntryViewModel.Contestant
             };
 
             return View(contestantAccountViewModel);
@@ -65,6 +73,7 @@ namespace AdmissionWebsiteFinal.Controllers
         {
             var entryOption = unitOfWork.EntryOptions.Get(id);
             entryOption.Confirmed = true;
+            var session = entryOption.Option.Session;
             unitOfWork.EntryOptions.Update(entryOption);
             unitOfWork.Complete();
             return RedirectToAction(nameof(Index));

@@ -19,6 +19,7 @@ namespace AdmissionWebsiteFinal.Models
         public DateTime EndDate { get; set; }
         [Required]
         public bool Active { get; set; }
+        public bool ConfirmationStage { get; set; }
         public bool Expired { get { return EndDate < DateTime.Now; } }
         public IEnumerable<OptionViewModel> Options { get; set; }
         public static SessionViewModel CurrentActiveSession { get; set; }

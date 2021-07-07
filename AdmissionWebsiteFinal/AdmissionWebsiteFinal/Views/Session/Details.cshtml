@@ -6,8 +6,7 @@
 
 <h1>Details</h1>
 
-<div>
-    <h4>Session</h4>
+<div style="margin-bottom:50px;">
     <a asp-action="Index">Back to List</a>
     <hr />
     <dl class="row">
@@ -29,19 +28,30 @@
         <dd class="col-sm-10">
             @(Model.Active?"Yes":"No")
         </dd>
+        <dd class="col-sm-10">
+            @(Model.ConfirmationStage?"Yes":"No")
+        </dd>
     </dl>
 </div>
-@if(Model.Active)
-{
-<div class="d-flex justify-content-end">
-    <a asp-action="End" asp-route-id="@Model.Id" class="btn btn-danger">End Session</a>
+
+<h2 style="margin-bottom:20px;">Actions</h2>
+<div class="row g-3 align-items-center" style="margin-bottom:50px;">
+    @if (Model.Active)
+    {
+        <div class="col-auto">
+            <a asp-action="End" asp-route-id="@Model.Id" class="btn btn-danger">End Session</a>
+        </div>
+        <div class="col-auto">
+            <a asp-action="StartConfirmationStage" asp-route-id="@Model.Id" class="btn btn-warning">Start Confirmation Stage</a>
+        </div>
+    }
+    <div class="col-auto">
+        <a asp-action="Index" asp-controller="Standings" asp-route-id="@Model.Id" class="btn btn-primary">Standings</a>
+    </div>
 </div>
-}
-<div class="d-flex justify-content-end mt-2">
-    <a asp-action="Index" asp-controller="Standings" asp-route-id="@Model.Id" class="btn btn-primary">Standings</a>
-</div>
+
 <div>
-    <h4>Specializations</h4>
+    <h2>Specializations</h2>
     <br />
     @if (Model.Active)
     {
@@ -97,8 +107,4 @@
             </tbody>
         </table>
     }
-</div>
-
-<div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
 </div>

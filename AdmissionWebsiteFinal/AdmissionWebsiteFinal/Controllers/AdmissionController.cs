@@ -36,6 +36,18 @@ namespace AdmissionWebsiteFinal.Controllers
             return View("RegisterError");
         }
 
+        public ActionResult SearchEntry(string searchTerm)
+        {
+            if(!string.IsNullOrEmpty(searchTerm))
+            {
+                int sessionId = unitOfWork.Sessions.GetActiveSession().Id;
+                var searchedEntries = mapper.Map<List<AdmissionEntryViewModel>>(unitOfWork.AdmissionEntries.SearchEntry(searchTerm, sessionId));
+                return View("Index", searchedEntries);
+            }
+
+            return RedirectToAction(nameof(Index));
+        }
+
         public ActionResult EntryDetails(int id)
         {
             var admissionEntryViewModel = mapper.Map<AdmissionEntryViewModel>(unitOfWork.AdmissionEntries.Get(id));
@@ -53,8 +65,8 @@ namespace AdmissionWebsiteFinal.Controllers
         }
         private void CreateContestantAccount(Contestant contestant)
         {
-            //string password = contestant.FirstName + contestant.ContestantId.TakeLast(6);
-            string password = "Parola123!";
+            string lastSix = contestant.ContestantId.Substring(contestant.ContestantId.Length - 6);
+            string password = contestant.FirstName + lastSix + "!";
             var user = new ContestantAccount
             {
                 UserName = contestant.Email,
@@ -62,7 +74,9 @@ namespace AdmissionWebsiteFinal.Controllers
                 ContestantId = contestant.ContestantId,
                 EmailConfirmed = true
             };
+
             var result = userManager.CreateAsync(user, password).Result;
+
             if (result.Succeeded)
             {
                 userManager.AddToRoleAsync(user, "ContestantAccount").Wait();

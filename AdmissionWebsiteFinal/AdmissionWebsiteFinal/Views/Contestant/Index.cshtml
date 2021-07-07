@@ -49,9 +49,7 @@
                     @Html.DisplayFor(modelItem => modelItem.Entry.DateCreated)
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@Model.Entry.Id">Edit</a> |
-                    <a asp-action="ContestantEntryDetails" asp-route-id="@Model.Entry.Id">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@Model.Entry.Id">Delete</a>
+                    <a asp-action="ContestantEntryDetails" asp-route-id="@Model.Entry.Id">Details</a>
                 </td>
             </tr>
     </tbody>

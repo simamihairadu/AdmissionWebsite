@@ -16,7 +16,13 @@ namespace AdmissionWebsiteFinal.Persistence
         {
             return ApplicationDbContext.EntryOptions.Where(o => o.AdmissionEntryId == entryId).
                 Include(o => o.Option).
+                Include(o => o.Option.Session).
                 Include(o => o.Option.Specialization).ToList();
+        }
+
+        public override EntryOption Get(int id)
+        {
+            return ApplicationDbContext.EntryOptions.Where(e =>e.Id == id).Include(e => e.Option.Session).FirstOrDefault();
         }
     }
 }

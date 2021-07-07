@@ -5,10 +5,10 @@
 }
 
 <h1>Index</h1>
-<form asp-action="RegisterError">
+<form asp-action="SearchEntry" asp-controller="Admission">
     <div class="form-row mb-4 mt-3">
         <div class="col-5">
-            <input type="text" class="form-control">
+            @Html.TextBox("searchTerm",null, new {@class = "form-control" })
         </div>
         <div class="col">
             <button type="submit" class="btn btn-primary">Search</button>

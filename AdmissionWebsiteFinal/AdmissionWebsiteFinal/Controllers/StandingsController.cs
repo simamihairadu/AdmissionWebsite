@@ -47,25 +47,34 @@ namespace AdmissionWebsiteFinal.Controllers
             entries.RemoveAll(e => rdpEntries.Contains(e));
             return rdpEntries;
         }
-        public IActionResult Index(StandingViewModel standingViewModel,int id)
+        public IActionResult Index(StandingViewModel standingViewModel,int id, int filterMethod)
         {
             var option = unitOfWork.Options.Get(standingViewModel.OptionId);
             var options = mapper.Map<IEnumerable<OptionViewModel>>(unitOfWork.Options.GetOptionsBySessionId(id));
+            var entries = new List<AdmissionEntry>();
 
-            var entries = unitOfWork.AdmissionEntries.GetAdmissionEntriesByOptionId(standingViewModel.OptionId);
+            if(filterMethod == 1)
+            {
+                entries = unitOfWork.AdmissionEntries.GetAdmissionEntriesByOptionId(standingViewModel.OptionId);
+            } 
+            else if(filterMethod == 2)
+            {
+                entries = unitOfWork.AdmissionEntries.GetConfirmedAdmissionEntriesByOptionId(standingViewModel.OptionId);
+            }
 
             if(option != null)
             {
                 rromEntries = GetRromEntries(ref entries, option.LocuriRrom);
                 rdpEntries = GetRDPEntries(ref entries, option.LocuriRomanDePretutindeni);
                 bugetEntries = entries.Take(option.LocuriBuget).ToList();
-                taxaEntries = entries.Skip(option.LocuriBuget).Take(option.LocuriTaxa).ToList();
+                taxaEntries = entries.Skip(option.LocuriBuget).ToList();
                 standingViewModel.BugetEntries = UpdateEntryStatus(mapper.Map<List<AdmissionEntryViewModel>>(bugetEntries), standingViewModel.OptionId);
                 standingViewModel.TaxaEntries = UpdateEntryStatus(mapper.Map<List<AdmissionEntryViewModel>>(taxaEntries), standingViewModel.OptionId);
                 standingViewModel.RromEntries = UpdateEntryStatus(mapper.Map<List<AdmissionEntryViewModel>>(rromEntries), standingViewModel.OptionId);
                 standingViewModel.RDPEntries = UpdateEntryStatus(mapper.Map<List<AdmissionEntryViewModel>>(rdpEntries), standingViewModel.OptionId);
 
             }
+            standingViewModel.Option = mapper.Map<OptionViewModel>(option);
             standingViewModel.Options = options;
             return View(standingViewModel);
         }

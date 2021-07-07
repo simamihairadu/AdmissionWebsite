@@ -60,6 +60,21 @@ namespace AdmissionWebsiteFinal.Persistence
             return entries;
         }
 
+        public List<AdmissionEntry> GetConfirmedAdmissionEntriesByOptionId(int optionId)
+        {
+            var entryOptions = ApplicationDbContext.EntryOptions.Where(e => e.OptionId == optionId && e.Confirmed == true).
+                Include(e => e.AdmissionEntry).
+                Include(e => e.AdmissionEntry.Contestant).
+                OrderByDescending(e => e.AdmissionEntry.EntryScore);
+            List<AdmissionEntry> entries = new List<AdmissionEntry>();
+
+            foreach (var item in entryOptions)
+            {
+                entries.Add(item.AdmissionEntry);
+            }
+            return entries;
+        }
+
         public IEnumerable<AdmissionEntry> SearchEntry(string searchTerm,int sessionId)
         {
             var entries = GetAdmissionEntriesBySessionId(sessionId);

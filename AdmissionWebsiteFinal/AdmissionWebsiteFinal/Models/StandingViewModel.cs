@@ -9,6 +9,7 @@ namespace AdmissionWebsiteFinal.Models
     {
         public int OptionId { get; set; }
         public int SessionId { get; set; }
+        public OptionViewModel Option { get; set; }
         public IEnumerable<OptionViewModel> Options { get; set; }
         public IEnumerable<AdmissionEntryViewModel> Entries { get; set; }
         public IEnumerable<AdmissionEntryViewModel> BugetEntries { get; set; }

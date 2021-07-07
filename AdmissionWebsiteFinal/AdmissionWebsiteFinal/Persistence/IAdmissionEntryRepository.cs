@@ -13,5 +13,6 @@ namespace AdmissionWebsiteFinal.Persistence
         List<AdmissionEntry> GetAdmissionEntriesByOptionId(int optionId);
         bool GetEntryStatus(int entryId, int optionId);
         IEnumerable<AdmissionEntry> SearchEntry(string searchTerm, int sessionId);
+        List<AdmissionEntry> GetConfirmedAdmissionEntriesByOptionId(int optionId);
     }
 }

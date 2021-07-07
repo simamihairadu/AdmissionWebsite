@@ -3,7 +3,12 @@
 <form asp-action="Index">
     <div class="container">
         <div class="form-group">
-            @Html.DropDownListFor(m => m.OptionId, new SelectList(Model.Options, "Id", "Specialization.Name"), "Select Specialization", new { @class = "form-control" })
+            @Html.DropDownListFor(m => m.OptionId, new SelectList(Model.Options, "Id", "Specialization.Name"), "Select Specialization", new { @class = "form-control"})
+        </div>
+        <div class="form-group">
+            @Html.DropDownList("filterMethod",new List<SelectListItem>{
+                                              new SelectListItem{ Text = "All",Value ="1" },
+                                              new SelectListItem{ Text = "Confirmed",Value ="2"},},"Select Filter", new { @class = "form-control"})
         </div>
         <div class="form-group">
             <input type="submit" value="Get" class="btn btn-primary" />
@@ -14,7 +19,7 @@
     <a asp-controller="Standings" asp-action="StandingsToPdf">Export to PDF.</a>
 </div>
 <h1>Buget</h1>
-<table class="table text-nowrap table-bordered table-striped">
+<table class="table text-nowrap table-bordered">
     <thead>
         <tr>
             <th>
@@ -72,7 +77,7 @@
 </table>
 
 <h1>Taxa</h1>
-<table class="table text-nowrap table-bordered table-striped">
+<table class="table text-nowrap table-bordered">
     <thead>
         <tr>
             <th>
@@ -98,39 +103,50 @@
     </thead>
     @if (Model.TaxaEntries != null)
     {
-        <tbody>
-            @foreach (var item in Model.TaxaEntries)
-            {
-                <tr class=@(item.ConfirmedOption?"table-success":"")>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Id)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.EntryScore)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ContestantId)
-                    </td>
-                    <th class="font-weight-normal">
-                        @Html.DisplayFor(modelItem => item.Contestant.FirstName)
-                    </th>
-                    <th class="font-weight-normal">
-                        @Html.DisplayFor(modelItem => item.Contestant.LastName)
-                    </th>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.DateCreated)
-                    </td>
-                    <td>
-                        <a asp-controller="Admission" asp-action="EntryDetails" asp-route-id="@item.Id">Details</a>
-                    </td>
-                </tr>
-            }
-        </tbody>
+        int i = 0;
+        string tableColor = "";
+<tbody>
+    @foreach (var item in Model.TaxaEntries)
+    {
+        if (item.ConfirmedOption == true)
+        {
+            tableColor = "table-success";
+        }
+        if (i >= Model.Option.LocuriTaxa)
+        {
+            tableColor = "table-warning";
+        }
+        <tr class=@tableColor>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EntryScore)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ContestantId)
+            </td>
+            <th class="font-weight-normal">
+                @Html.DisplayFor(modelItem => item.Contestant.FirstName)
+            </th>
+            <th class="font-weight-normal">
+                @Html.DisplayFor(modelItem => item.Contestant.LastName)
+            </th>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateCreated)
+            </td>
+            <td>
+                <a asp-controller="Admission" asp-action="EntryDetails" asp-route-id="@item.Id">Details</a>
+            </td>
+        </tr>
+        i++;
+    }
+</tbody>
     }
 </table>
 
 <h2>Locuri Rrom</h2>
-<table class="table text-nowrap table-bordered table-striped">
+<table class="table text-nowrap table-bordered">
     <thead>
         <tr>
             <th>
@@ -188,7 +204,7 @@
 </table>
 
 <h2>Locuri Romani de pretutindeni</h2>
-<table class="table text-nowrap table-bordered table-striped">
+<table class="table text-nowrap table-bordered ">
     <thead>
         <tr>
             <th>

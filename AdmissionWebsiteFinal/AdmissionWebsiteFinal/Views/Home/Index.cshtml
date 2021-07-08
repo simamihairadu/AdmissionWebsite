@@ -3,13 +3,22 @@
 }
 <link rel="stylesheet" href="~/css/homeIndex.css" />
 
-<div class="welcometext-container">
+<div class="welcometext-container" style="overflow:hidden">
     <img src="https://finding-neverland.de/wp-content/uploads/2020/04/sibiu_shutterstock.jpg" alt="Students" style="width: 100%;
-        height: 337px;
+        height: 300px;
         object-fit: cover;
-        object-position: 0 30%"/>
+        object-position: 0 30%;
+        -webkit-filter:blur(1px);
+        transform: scale(1.03)"/>
 
     <div class="welcometext">
-        <h1 class="display-4 text-center">Welcome!</h1>
+        <h1 class="display-2 text-center text-light" style="-webkit-text-stroke: 2px black;">Welcome!</h1>
+    </div>
+</div>
+
+<div class="card" style="margin-top: 30px;">
+    <div class="card-body">
+        <h5 class="card-title">Welcome!</h5>
+        <p class="card-text">Use this platform to start and manage the admission process.</p>
     </div>
 </div>

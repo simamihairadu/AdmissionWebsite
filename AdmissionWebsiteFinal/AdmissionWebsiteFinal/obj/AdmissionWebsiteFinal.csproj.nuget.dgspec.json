@@ -1,25 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Dev\\AdmissionWebsite\\AdmissionWebsiteFinal\\AdmissionWebsiteFinal\\AdmissionWebsiteFinal.csproj": {}
+    "E:\\work\\GitHub\\AdmissionWebsite\\AdmissionWebsiteFinal\\AdmissionWebsiteFinal\\AdmissionWebsiteFinal.csproj": {}
   },
   "projects": {
-    "C:\\Dev\\AdmissionWebsite\\AdmissionWebsiteFinal\\AdmissionWebsiteFinal\\AdmissionWebsiteFinal.csproj": {
+    "E:\\work\\GitHub\\AdmissionWebsite\\AdmissionWebsiteFinal\\AdmissionWebsiteFinal\\AdmissionWebsiteFinal.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Dev\\AdmissionWebsite\\AdmissionWebsiteFinal\\AdmissionWebsiteFinal\\AdmissionWebsiteFinal.csproj",
+        "projectUniqueName": "E:\\work\\GitHub\\AdmissionWebsite\\AdmissionWebsiteFinal\\AdmissionWebsiteFinal\\AdmissionWebsiteFinal.csproj",
         "projectName": "AdmissionWebsiteFinal",
-        "projectPath": "C:\\Dev\\AdmissionWebsite\\AdmissionWebsiteFinal\\AdmissionWebsiteFinal\\AdmissionWebsiteFinal.csproj",
-        "packagesPath": "C:\\Users\\Sima Mihai-Radu\\.nuget\\packages\\",
-        "outputPath": "C:\\Dev\\AdmissionWebsite\\AdmissionWebsiteFinal\\AdmissionWebsiteFinal\\obj\\",
+        "projectPath": "E:\\work\\GitHub\\AdmissionWebsite\\AdmissionWebsiteFinal\\AdmissionWebsiteFinal\\AdmissionWebsiteFinal.csproj",
+        "packagesPath": "C:\\Users\\Mike\\.nuget\\packages\\",
+        "outputPath": "E:\\work\\GitHub\\AdmissionWebsite\\AdmissionWebsiteFinal\\AdmissionWebsiteFinal\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
         ],
         "configFilePaths": [
-          "C:\\Users\\Sima Mihai-Radu\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Mike\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
@@ -103,7 +105,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.204\\RuntimeIdentifierGraph.json"
         }
       }
     }

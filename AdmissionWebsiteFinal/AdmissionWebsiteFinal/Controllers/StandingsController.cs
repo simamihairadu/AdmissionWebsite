@@ -53,27 +53,34 @@ namespace AdmissionWebsiteFinal.Controllers
             var options = mapper.Map<IEnumerable<OptionViewModel>>(unitOfWork.Options.GetOptionsBySessionId(id));
             var entries = new List<AdmissionEntry>();
 
-            if(filterMethod == 1)
+            if (option != null)
             {
-                entries = unitOfWork.AdmissionEntries.GetAdmissionEntriesByOptionId(standingViewModel.OptionId);
-            } 
-            else if(filterMethod == 2)
-            {
-                entries = unitOfWork.AdmissionEntries.GetConfirmedAdmissionEntriesByOptionId(standingViewModel.OptionId);
+                if (filterMethod == 1)
+                {
+                    entries = unitOfWork.AdmissionEntries.GetAdmissionEntriesByOptionId(standingViewModel.OptionId);
+                    rromEntries = GetRromEntries(ref entries, option.LocuriRrom);
+                    rdpEntries = GetRDPEntries(ref entries, option.LocuriRomanDePretutindeni);
+                    bugetEntries = entries.Take(option.LocuriBuget).ToList();
+                    taxaEntries = entries.Skip(option.LocuriBuget).ToList();
+                    standingViewModel.BugetEntries = UpdateEntryStatus(mapper.Map<List<AdmissionEntryViewModel>>(bugetEntries), standingViewModel.OptionId);
+                    standingViewModel.TaxaEntries = UpdateEntryStatus(mapper.Map<List<AdmissionEntryViewModel>>(taxaEntries), standingViewModel.OptionId);
+                    standingViewModel.RromEntries = UpdateEntryStatus(mapper.Map<List<AdmissionEntryViewModel>>(rromEntries), standingViewModel.OptionId);
+                    standingViewModel.RDPEntries = UpdateEntryStatus(mapper.Map<List<AdmissionEntryViewModel>>(rdpEntries), standingViewModel.OptionId);
+                }
+                else if (filterMethod == 2)
+                {
+                    entries = unitOfWork.AdmissionEntries.GetConfirmedAdmissionEntriesByOptionId(standingViewModel.OptionId);
+                    rromEntries = GetRromEntries(ref entries, option.LocuriRrom);
+                    rdpEntries = GetRDPEntries(ref entries, option.LocuriRomanDePretutindeni);
+                    bugetEntries = entries.Take(option.LocuriBuget).ToList();
+                    taxaEntries = entries.Skip(option.LocuriBuget).Take(option.LocuriTaxa).ToList();
+                    standingViewModel.BugetEntries = UpdateEntryStatus(mapper.Map<List<AdmissionEntryViewModel>>(bugetEntries), standingViewModel.OptionId);
+                    standingViewModel.TaxaEntries = UpdateEntryStatus(mapper.Map<List<AdmissionEntryViewModel>>(taxaEntries), standingViewModel.OptionId);
+                    standingViewModel.RromEntries = UpdateEntryStatus(mapper.Map<List<AdmissionEntryViewModel>>(rromEntries), standingViewModel.OptionId);
+                    standingViewModel.RDPEntries = UpdateEntryStatus(mapper.Map<List<AdmissionEntryViewModel>>(rdpEntries), standingViewModel.OptionId);
+                }
             }
 
-            if(option != null)
-            {
-                rromEntries = GetRromEntries(ref entries, option.LocuriRrom);
-                rdpEntries = GetRDPEntries(ref entries, option.LocuriRomanDePretutindeni);
-                bugetEntries = entries.Take(option.LocuriBuget).ToList();
-                taxaEntries = entries.Skip(option.LocuriBuget).ToList();
-                standingViewModel.BugetEntries = UpdateEntryStatus(mapper.Map<List<AdmissionEntryViewModel>>(bugetEntries), standingViewModel.OptionId);
-                standingViewModel.TaxaEntries = UpdateEntryStatus(mapper.Map<List<AdmissionEntryViewModel>>(taxaEntries), standingViewModel.OptionId);
-                standingViewModel.RromEntries = UpdateEntryStatus(mapper.Map<List<AdmissionEntryViewModel>>(rromEntries), standingViewModel.OptionId);
-                standingViewModel.RDPEntries = UpdateEntryStatus(mapper.Map<List<AdmissionEntryViewModel>>(rdpEntries), standingViewModel.OptionId);
-
-            }
             standingViewModel.Option = mapper.Map<OptionViewModel>(option);
             standingViewModel.Options = options;
             return View(standingViewModel);

@@ -180,6 +180,10 @@ namespace AdmissionWebsiteFinal.Controllers
                 {
                     ModelState.AddModelError("Contestant.Id", "CNP already exists. Use \"Add existing\" instead.");
                 }
+                if(model.RDPSpot == true && model.RromSpot == true)
+                {
+                    ModelState.AddModelError("RDPSpot", "Can only choose one.");
+                }
                 if (!ModelState.IsValid)
                 { 
                     return View(GetAdmissionEntryViewModel());
